@@ -9,8 +9,7 @@ call vundle#begin()
 
 " =-=-=-=-=-=-=-=-=-(BEGIN PLUGIN INSTALLATION)-=-=-=-=-=-=-=-=-=-=-=-
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
