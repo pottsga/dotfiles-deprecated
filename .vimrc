@@ -20,7 +20,8 @@ Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'morhetz/gruvbox'
 Bundle 'jistr/vim-nerdtree-tabs'
-Plugin 'briancollins/vim-jst'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -45,7 +46,12 @@ nnoremap <C-a> 0
 nnoremap <C-e> $
 
 " CONFIGURE EMMET
-let g:user_emmet_settings = {'indentation': '  '}
+let g:user_emmet_settings = {
+\ 'indentation': '  ',
+\ 'javascript.jsx': {
+\   'extends': 'jsx',
+\ }
+\}
 let g:user_emmet_complete_tag = 1
 let g:user_emmet_expandabbr_key='<C-J>'
 
@@ -62,12 +68,15 @@ set guifont=Monaco:h12
 set autochdir
 set autowriteall
 
-set autoindent
-set expandtab
-set smartindent
-set smarttab
+" set autoindent
+" set smartindent
+" set smarttab
 
-set tabstop=4
-autocmd Filetype html setlocal tabstop=2 sw=2 expandtab
-autocmd Filetype jinja setlocal tabstop=2 sw=2 expandtab
-autocmd Filetype css setlocal tabstop=2 sw=2 expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+" autocmd Filetype html setlocal tabstop=2 sw=2 expandtab
+" autocmd Filetype jinja setlocal tabstop=2 sw=2 expandtab
+" autocmd Filetype css setlocal tabstop=2 sw=2 expandtab
+" autocmd Filetype js setlocal tabstop=2 sw=2 expandtab
