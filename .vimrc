@@ -39,17 +39,11 @@ map <C-v> <C-w>v
 " Remap horizontal split window
 map <C-h> <C-w>s
 
-set backspace=2 " make backspace work like most other programs
-
-set tabstop=4
-autocmd Filetype html setlocal tabstop=2 sw=2 expandtab
-autocmd Filetype jinja setlocal tabstop=2 sw=2 expandtab
-autocmd Filetype css setlocal tabstop=2 sw=2 expandtab
-
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 nnoremap <C-a> 0
 nnoremap <C-e> $
+
 " CONFIGURE EMMET
 let g:user_emmet_settings = {'indentation': '  '}
 let g:user_emmet_complete_tag = 1
@@ -65,3 +59,15 @@ set guioptions=
 set encoding=UTF-8
 set guifont=Monaco:h12
 
+set autochdir
+set autowriteall
+
+set autoindent
+set expandtab
+set smartindent
+set smarttab
+
+set tabstop=4
+autocmd Filetype html setlocal tabstop=2 sw=2 expandtab
+autocmd Filetype jinja setlocal tabstop=2 sw=2 expandtab
+autocmd Filetype css setlocal tabstop=2 sw=2 expandtab
