@@ -35,17 +35,6 @@ set number
 
 " Remap change window command to C-o
 map <C-o> <C-w>w
-" Remap quit window command
-map <C-q> <C-w>q
-" Remap vertical split window
-map <C-v> <C-w>v
-" Remap horizontal split window
-map <C-h> <C-w>s
-
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-nnoremap <C-a> 0
-nnoremap <C-e> $
 
 " CONFIGURE EMMET
 let g:user_emmet_settings = {
@@ -59,26 +48,18 @@ let g:user_emmet_expandabbr_key='<C-J>'
 
 map <C-t> :NERDTreeToggle<Enter>
 
-nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-
-colorscheme gruvbox
-set noeb vb t_vb =
+" colorscheme gruvbox
+" set noeb vb t_vb =
 set guioptions=
 set encoding=UTF-8
 set guifont=Monaco:h12
 
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+
 set autochdir
 set autowriteall
-
-" set autoindent
-" set smartindent
-" set smarttab
 
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-" autocmd Filetype html setlocal tabstop=2 sw=2 expandtab
-" autocmd Filetype jinja setlocal tabstop=2 sw=2 expandtab
-" autocmd Filetype css setlocal tabstop=2 sw=2 expandtab
-" autocmd Filetype js setlocal tabstop=2 sw=2 expandtab
