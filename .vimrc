@@ -12,7 +12,7 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'xuyuanp/nerdtree-git-plugin'
+" Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
 Bundle 'lepture/vim-jinja'
@@ -22,7 +22,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " Plugin 'pangloss/vim-javascript'
 " Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/syntastic'
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
 Plugin 'joshdick/onedark.vim'
 Plugin 'sheerun/vim-polyglot'
 " Plugin 'vim-airline/vim-airline'
@@ -52,17 +52,12 @@ let g:user_emmet_expandabbr_key='<C-J>'
 
 map <C-t> :NERDTreeToggle<Enter>
 
-" colorscheme gruvbox
-" set noeb vb t_vb =
+set noeb vb t_vb=
 set guioptions=
 set encoding=UTF-8
 set guifont=Monaco:h12
 set laststatus=2
 :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
-
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
 
 set autochdir
 set autowriteall
@@ -78,9 +73,8 @@ set expandtab
 let g:onedark_termcolors=256
 
 let g:lightline = {
-\ 'colorscheme': 'onedark',
-\ }
-
+      \'colorscheme': 'onedark',
+      \}
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
