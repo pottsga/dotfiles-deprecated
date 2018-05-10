@@ -12,21 +12,16 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
 Bundle 'lepture/vim-jinja'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
-Bundle 'jistr/vim-nerdtree-tabs'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/syntastic'
-" Plugin 'plasticboy/vim-markdown'
 Plugin 'joshdick/onedark.vim'
 Plugin 'sheerun/vim-polyglot'
-" Plugin 'vim-airline/vim-airline'
 Plugin 'itchyny/lightline.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,6 +46,14 @@ let g:user_emmet_complete_tag = 1
 let g:user_emmet_expandabbr_key='<C-J>'
 
 map <C-t> :NERDTreeToggle<Enter>
+
+" CONFIGURE CTRLP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 set noeb vb t_vb=
 set guioptions=
@@ -93,5 +96,4 @@ endif
 
 syntax on
 colorscheme onedark
-
 
