@@ -23,18 +23,39 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-sensible'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " =-=-=-=-=-=-=-=-=-(END PLUGIN INSTALLATION)-=-=-=-=-=-=-=-=-=-=-=-
+
+" ==================
+" BASE CONFIGURATION
+" ==================
 syntax enable 
 set ruler
 set number
-
-" Remap change window command to C-o
+set noeb vb t_vb=
+set guioptions=
+set encoding=UTF-8
+set guifont=Monaco:h12
+set laststatus=2
+set autochdir
+set autowriteall
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+:syn sync minlines=999999
 map <C-o> <C-w>w
+
+" ==================
+" BASE CONFIGURATION
+" ==================
 
 " CONFIGURE EMMET
 let g:user_emmet_settings = {
@@ -46,39 +67,27 @@ let g:user_emmet_settings = {
 let g:user_emmet_complete_tag = 1
 let g:user_emmet_expandabbr_key='<C-J>'
 
+" CONFIGURE NERD TREE
 map <C-t> :NERDTreeToggle<Enter>
 
 " CONFIGURE CTRLP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-set noeb vb t_vb=
-set guioptions=
-set encoding=UTF-8
-set guifont=Monaco:h12
-set laststatus=2
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+" CONFIGURE VIM-MARKDOWN
+let g:vim_markdown_folding_disabled = 1
 
-set autochdir
-set autowriteall
-
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-
-" Fix syntax highlighting lag
-:syn sync minlines=999999
-
+" CONFIGURE ONEDARK
 let g:onedark_termcolors=256
 
+" CONFIGURE LIGHTLINE
 let g:lightline = {
-      \'colorscheme': 'onedark',
-      \}
+\'colorscheme': 'onedark',
+\}
+
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -97,4 +106,3 @@ endif
 
 syntax on
 colorscheme onedark
-
