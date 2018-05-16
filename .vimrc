@@ -53,6 +53,8 @@ set expandtab
 :syn sync minlines=999999
 map <C-o> <C-w>w
 
+:inoremap <C-l>c :!pdflatex %<CR>
+:nnoremap <C-l>c :!pdflatex %<CR>
 " ==================
 " BASE CONFIGURATION
 " ==================
