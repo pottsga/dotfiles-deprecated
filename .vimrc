@@ -24,7 +24,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,7 +51,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
-:syn sync minlines=999999
+:syn sync fromstart
+:syn sync minlines=10000
+autocmd BufEnter * :syntax sync fromstart
 map <C-o> <C-w>w
 
 :inoremap <C-l>c :!pdflatex %<CR>
