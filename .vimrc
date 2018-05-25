@@ -1,3 +1,5 @@
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -24,7 +26,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
