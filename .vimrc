@@ -9,8 +9,7 @@ call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
 
 " =-=-=-=-=-=-=-=-=-(BEGIN PLUGIN INSTALLATION)-=-=-=-=-=-=-=-=-=-=-=-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
@@ -27,6 +26,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
+Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,15 +51,16 @@ set autowriteall
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+
+au FileType php setl sw=4 sts=4 ts=4 et
+
 set expandtab
 :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 :syn sync fromstart
-:syn sync minlines=10000
-autocmd BufEnter * :syntax sync fromstart
+" :syn sync minlines=10000
+" autocmd BufEnter * :syntax sync fromstart
 map <C-o> <C-w>w
 
-:inoremap <C-l>c :!pdflatex %<CR>
-:nnoremap <C-l>c :!pdflatex %<CR>
 " ==================
 " BASE CONFIGURATION
 " ==================
@@ -94,9 +96,6 @@ let g:lightline = {
 \'colorscheme': 'onedark',
 \}
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
 if (empty($TMUX))
   if (has("nvim"))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
