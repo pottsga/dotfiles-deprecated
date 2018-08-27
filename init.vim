@@ -6,6 +6,8 @@ call plug#begin()
 Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
