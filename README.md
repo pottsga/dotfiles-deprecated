@@ -4,24 +4,38 @@
 
 ### vim
 
-#### 1.) Remove any old configuration files that might exist in the setup. We need to start fresh.
+#### 1. Remove old configuration files, create new configuration directory
+
+Remove all the old configuration files because we need to start from fresh.
 
 ```sh
-if [-e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc_bak; fi
-if [-e ~/.vim ]; then mv ~/.vim ~/.vim_bak; fi
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle;
+if [ -d ~/.config/nvim ]; then rm -rf ~/.config/nvim; fi
+mkdir ~/.config/nvim
 ```
 
-#### 2.) Start up vim. 
+#### 2. Move init.vim to ~/.config/nvim/
 
 ```sh
-vim
+mv init.vim ~/.config/nvim/
 ```
 
-#### 3.) Run :PluginInstall 
+#### 3. Clone Plug.vim to handle plugin management.
 
 ```sh
-:PluginInstall
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \ 
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-#### 4.) Done. You should now have a functioning copy of vim with the configuration on ~/.vimrc
+#### 4. Start up NVIM
+
+```sh
+nvim
+```
+
+#### 5. Install plugins
+
+```sh
+:PlugInstall
+```
+
+#### 6. Done
