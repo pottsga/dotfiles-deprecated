@@ -38,3 +38,19 @@ nvim
 ```
 
 #### 6. Done
+
+### ZSH
+
+#### 1. Move .zshrc to ~/.zshrc
+
+```sh
+mv .zshrc ~/.zshrc
+```
+
+#### 2. Move the .zsh-theme to the .oh-my-zsh/themes/ directory
+
+```sh
+mv pottsga.zsh-theme ~/.oh-my-zsh/themes/
+```
+
+### Done.
