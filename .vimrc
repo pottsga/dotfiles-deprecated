@@ -1,15 +1,14 @@
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set nocompatible        " Use Vim settings, rather than Vi settings
+filetype off 		" required
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
+" ========== VUNDLE INIT/PLUGIN INSTALL ==========
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
 
-" =-=-=-=-=-=-=-=-=-(BEGIN PLUGIN INSTALLATION)-=-=-=-=-=-=-=-=-=-=-=-
 " let Vundle manage Vundle, required Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
@@ -27,43 +26,59 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
-Plugin 'posva/vim-vue'
+Plugin 'dhruvasagar/vim-table-mode'
+" Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" =-=-=-=-=-=-=-=-=-(END PLUGIN INSTALLATION)-=-=-=-=-=-=-=-=-=-=-=-
+" ========== GENERAL CONFIG ==========
+set number 			" Use line numbers
+set backspace=indent,eol,start  " Allow backspace in insert mode
+set history=1000		" Store lots of :cmdline history
+set showmode			" Show current mode at the bottom
+set gcr=a:blinkon0		" Disable cursor blink
+set autoread			" Reload files changed outside vim
 
-" ==================
-" BASE CONFIGURATION
-" ==================
-syntax enable 
-set ruler
-set number
-set noeb vb t_vb=
-set guioptions=
-set encoding=UTF-8
 set guifont=Monaco:h12
-set laststatus=2
+set encoding=UTF-8
+
+set guioptions=
 set autochdir
 set autowriteall
+
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 
 au FileType php setl sw=4 sts=4 ts=4 et
+au BufNewFile,BufRead,BufReadPost *.vue set syntax=HTML
 
 set expandtab
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
-:syn sync fromstart
-" :syn sync minlines=10000
-" autocmd BufEnter * :syntax sync fromstart
-map <C-o> <C-w>w
 
-" ==================
-" BASE CONFIGURATION
-" ==================
+set hidden			" Allow buffers to exist in the background
+				" without being in a window
+
+syntax on 			" Turn on syntax highlighting
+
+let mapleader=","		" Change the leader key to , instead of \
+
+" Show a red marker if the line is > 80 characters
+highlight ColorColumn ctermbg=red
+call matchadd('colorColumn', '\%81v', 100)
+
+map <C-o> <C-w>w 		
+
+set noswapfile			" Turn off the swap file
+set nobackup
+set nowb
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" ========== PLUGIN CONFIGURATION ==========
 
 " CONFIGURE EMMET
 let g:user_emmet_settings = {
@@ -96,6 +111,23 @@ let g:lightline = {
 \'colorscheme': 'onedark',
 \}
 
+" CONFIGURE TABLE MODE
+let g:table_mode_corner_corner="+"
+
+" CONFIGURE COMPLETION
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
 if (empty($TMUX))
   if (has("nvim"))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -109,5 +141,4 @@ if (empty($TMUX))
   endif
 endif
 
-syntax on
 colorscheme onedark
