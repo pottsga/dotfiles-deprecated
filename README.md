@@ -22,8 +22,7 @@ mv init.vim ~/.config/nvim/
 #### 3. Clone Plug.vim to handle plugin management.
 
 ```sh
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \ 
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 #### 4. Start up NVIM
