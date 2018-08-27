@@ -32,6 +32,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Map <Esc> to exit terminal-mode
+tnoremap <Esc> <C-\><C-n>
+
+
 map <C-o> <C-w>w
 
 " +=======================+
