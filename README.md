@@ -39,7 +39,7 @@ nvim
 
 #### 6. Done
 
-### ZSH
+### zsh
 
 #### 1. Move .zshrc to ~/.zshrc
 
