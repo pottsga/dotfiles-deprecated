@@ -7,14 +7,20 @@
 
     Plug 'scrooloose/nerdtree'              " NerdTree file tree
     Plug 'vim-syntastic/syntastic'          " Syntastic (syntax highlighting for a lot of langs)
-    Plug 'leafgarland/typescript-vim'     " Typescript vim
+    Plug 'leafgarland/typescript-vim'       " Typescript vim
+    Plug 'pangloss/vim-javascript'          " JavaScript syntax
+    Plug 'mxw/vim-jsx'                      " JSX syntax
 
+
+    Plug 'othree/html5.vim'                 " HTML5 syntax for nonstandard elements
 
     Plug 'mattn/emmet-vim'                  " Emmet for vim
     Plug 'alvan/vim-closetag'               " Close (x)html tags
 
     Plug 'joshdick/onedark.vim'             " Onedark theme
     Plug 'itchyny/lightline.vim'            " Lightline bar
+
+    Plug 'lepture/vim-jinja'                " Jinja2 syntax
 
     call plug#end()
 " }
@@ -53,6 +59,8 @@
         set ruler                           " Always show the cursor position
         set wildmenu                        " Display command line’s tab complete options as 
                                             "   a menu.
+
+        set wrap                            " Set the line wrapping.
         set mouse=a                         " Allow mouse for scrolling and resizing
         set title
         set background=dark                 " Use colors that suit a dark background.
@@ -111,6 +119,17 @@
             let g:syntastic_auto_loc_list = 1
             let g:syntastic_check_on_open = 1
             let g:syntastic_check_on_wq = 0
+            let g:syntastic_html_tidy_ignore_errors=[
+            \   " proprietary attribute ",
+            \   "trimming empty <", 
+            \   "unescaped &" , 
+            \   "lacks \"action", 
+            \   "is not recognized!", 
+            \   "discarding unexpected",
+            \   "attribute name ",
+            \   "lacks value",
+            \   "lacks \"src\" attribute",
+            \ ]
         """" }
     
         """" Emmet {
