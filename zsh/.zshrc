@@ -1,11 +1,24 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# CUSTOMIZATION
+
+## ALIASES
 alias vim="nvim"
 alias ssh="TERM=xterm-256color ssh -Y"
+
+## VARIABLES
+
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=/Users/potts_g/.oh-my-zsh
 export TERM=xterm-256color
+
+# ORACLE VARIABLES
+export ORACLE_HOME=/opt/oracle;
+export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_12_1;
+
+# Set Editor
+export EDITOR=vim;
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -55,8 +68,8 @@ ZSH_THEME="pottsga"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git,
-  osx
+    git,
+    osx
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -89,18 +102,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# ORACLE VARIABLES
-export ORACLE_HOME=/opt/oracle;
-export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_12_1;
-
-# Set Editor
-export EDITOR=vim;
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-# CUSTOM FUNCTIONS
-
-function note {
-  touch `date +%Y_%m_%d_%I_%M_%S_%p.md`; 
-}
