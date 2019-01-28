@@ -6,22 +6,21 @@
     call plug#begin()
 
     Plug 'scrooloose/nerdtree'              " NerdTree file tree
+    Plug 'ctrlpvim/ctrlp.vim'               " Ctrl+P
+    Plug 'mattn/emmet-vim'                  " Emmet for vim
+    Plug 'alvan/vim-closetag'               " Close (x)html tags
+
+    Plug 'othree/html5.vim'                 " HTML5 syntax for nonstandard elements
+    Plug 'lepture/vim-jinja'                " Jinja2 syntax
+    Plug 'elixir-editors/vim-elixir'        " Elixir syntax
     Plug 'vim-syntastic/syntastic'          " Syntastic (syntax highlighting for a lot of langs)
     Plug 'leafgarland/typescript-vim'       " Typescript vim
     Plug 'pangloss/vim-javascript'          " JavaScript syntax
     Plug 'mxw/vim-jsx'                      " JSX syntax
-    Plug 'ctrlpvim/ctrlp.vim'               " Ctrl+P
-
-    Plug 'othree/html5.vim'                 " HTML5 syntax for nonstandard elements
-
-    Plug 'mattn/emmet-vim'                  " Emmet for vim
-    Plug 'alvan/vim-closetag'               " Close (x)html tags
-
+    
     Plug 'joshdick/onedark.vim'             " Onedark theme
     Plug 'rakr/vim-one'                     " One theme
     Plug 'itchyny/lightline.vim'            " Lightline bar
-
-    Plug 'lepture/vim-jinja'                " Jinja2 syntax
 
     call plug#end()
 " }
@@ -162,5 +161,4 @@
         """" }
 
     """ }
-
 " }
