@@ -2,11 +2,12 @@
     call plug#begin()
 
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
-    Plug 'evidens/vim-twig'             " Twig syntax highlighting
+    Plug 'mxw/vim-jsx'                  " JSX-syntax
+    Plug 'nelsyeung/twig.vim'           " Jinja2 syntax
     Plug 'kien/ctrlp.vim'               " CTRLP
     Plug 'rafi/awesome-vim-colorschemes' 
     Plug 'mattn/emmet-vim'              " Emmet
-
+    Plug 'scrooloose/nerdtree'          " NERDTree
 
     call plug#end()
 " }
@@ -20,14 +21,18 @@
     set confirm                         " Ask before closing a file
 " }
 
+" Colorscheme {
+    colo onedark                        " Set colorscheme
+" }
+
 " Buffers {
     nnoremap <leader>l :ls<CR>:b<space>
 " }
-
 " Text-rendering {
 	set encoding=utf-8		            " Editor's encoding is UTF8
 	set scrolloff=5			            " Number of lines to keep under the current line
 	set sidescrolloff=5		            " Number of columns to keep to the right
+
 	syntax enable			            " Turn on syntax highlighting
 " }
 
@@ -40,7 +45,7 @@
 
     " HTML-specific indentation
 	autocmd BufRead,BufNewFile 
-		\ *.htm,*.html 
+		\ *.htm,*.html,*.twig,*.jinja,*.jinja2,*.cshtml
 		\ setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
     " CSS-specific indentation
@@ -72,6 +77,7 @@
     set splitright                      " Split vertically to the right of the current pane (sane)
     set showcmd                         " Show command in the bottom bar
     set wildmenu                        " Visual autocomplete for command menu
+    set colorcolumn=75                  " Show a visual marker at 75 cols 
 " }
 
 " Navigation {
@@ -80,10 +86,6 @@
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
-" }
-
-" Colorscheme {
-    colo onedark                        " Set colorscheme
 " }
 
 " Tmux {
@@ -104,6 +106,11 @@
         \ }
         let g:user_emmet_complete_tag = 1
         let g:user_emmet_expandabbr_key = '<C-J>'
+    " }
+
+    " NERDTree {
+        let g:NERDTreeNodeDelimiter = "\u00a0"
+        nnoremap <C-t> :NERDTreeToggle<CR>
     " }
 " }
 
