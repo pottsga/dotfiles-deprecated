@@ -2,6 +2,7 @@
     call plug#begin()
 
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
+    Plug 'leafgarland/typescript-vim'   " Improved JS syntax
     Plug 'mxw/vim-jsx'                  " JSX-syntax
     Plug 'nelsyeung/twig.vim'           " Jinja2 syntax
     Plug 'kien/ctrlp.vim'               " CTRLP
@@ -110,6 +111,7 @@
 
     " NERDTree {
         let g:NERDTreeNodeDelimiter = "\u00a0"
+        let g:NERDTreeIgnore=['\.DS_STORE', '\~$', '\.swp']
         nnoremap <C-t> :NERDTreeToggle<CR>
     " }
 " }
