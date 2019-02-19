@@ -4,7 +4,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # CUSTOMIZATION
 
 ## ALIASES
-alias vim="nvim"
 alias ssh="TERM=xterm-256color ssh -Y"
 
 ## VARIABLES
