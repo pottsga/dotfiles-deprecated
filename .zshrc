@@ -4,7 +4,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # CUSTOMIZATION
 
 ## ALIASES
+<<<<<<< HEAD:.zshrc
 # alias vim="nvim"
+=======
+>>>>>>> 52650d8b324fe6b5dbbeaf0d8f95d7771de5c32a:zsh/.zshrc
 alias ssh="TERM=xterm-256color ssh -Y"
 
 ## VARIABLES

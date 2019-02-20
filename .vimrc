@@ -1,3 +1,5 @@
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 " Plugins {
     call plug#begin()
 
@@ -29,9 +31,6 @@
     colo onedark                        " Set colorscheme
 " }
 
-" Buffers {
-    nnoremap <leader>l :ls<CR>:b<space>
-" }
 " Text-rendering {
 	set encoding=utf-8		            " Editor's encoding is UTF8
 	set scrolloff=8			            " Number of lines to keep under the current line
@@ -92,17 +91,6 @@
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
-" }
-
-" Tmux {
-    " allows cursor change in tmux mode
-    if exists('$TMUX')
-        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    else
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    endif
 " }
 
 " Plugins {
