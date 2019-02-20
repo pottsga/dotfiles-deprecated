@@ -14,12 +14,15 @@
 " }
 
 " General {
+    filetype plugin indent on
     let mapleader=","
     set nocompatible			        " Use VIM settings not VI settings	
     set noswapfile                      " Disable .swp files
     set nobackup                        " Disable backup files
     set backspace=indent,eol,start      " Sane backspacing
     set confirm                         " Ask before closing a file
+    set autoread                        " Automatically read files changed outside vim
+
 " }
 
 " Colorscheme {
@@ -31,8 +34,9 @@
 " }
 " Text-rendering {
 	set encoding=utf-8		            " Editor's encoding is UTF8
-	set scrolloff=5			            " Number of lines to keep under the current line
-	set sidescrolloff=5		            " Number of columns to keep to the right
+	set scrolloff=8			            " Number of lines to keep under the current line
+	set sidescrolloff=15	            " Number of columns to keep to the right
+    set sidescroll=1
 
 	syntax enable			            " Turn on syntax highlighting
 " }
@@ -79,6 +83,7 @@
     set showcmd                         " Show command in the bottom bar
     set wildmenu                        " Visual autocomplete for command menu
     set colorcolumn=75                  " Show a visual marker at 75 cols 
+
 " }
 
 " Navigation {
@@ -110,8 +115,14 @@
     " }
 
     " NERDTree {
+        let g:NERDTreeDirArrows=0
         let g:NERDTreeNodeDelimiter = "\u00a0"
-        let g:NERDTreeIgnore=['\.DS_STORE', '\~$', '\.swp']
+        let g:NERDTreeIgnore=[
+        \   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', 
+        \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', 
+        \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
+        \]
+
         nnoremap <C-t> :NERDTreeToggle<CR>
     " }
 " }
