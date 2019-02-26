@@ -1,4 +1,11 @@
+" AUTHOR: Greg Potts
+
+" SUMMARY: .vimrc
+
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Refer to the article at https://sookocheff.com/post/vim/italics/ on how to enable italics
+
+" ---
 
 " Plugins {
     call plug#begin()
@@ -11,6 +18,8 @@
     Plug 'rafi/awesome-vim-colorschemes' 
     Plug 'mattn/emmet-vim'              " Emmet
     Plug 'scrooloose/nerdtree'          " NERDTree
+    Plug 'lepture/vim-jinja'            " vim-jinja
+    Plug 'mkitt/tabline.vim'            " Tabline stuff
 
     call plug#end()
 " }
@@ -28,7 +37,9 @@
 " }
 
 " Colorscheme {
-    colo onedark                        " Set colorscheme
+    " colo onedark                        " Set colorscheme
+    set t_Co=256
+    colo pottsga
 " }
 
 " Text-rendering {
@@ -93,7 +104,20 @@
     nnoremap <C-H> <C-W><C-H>
 " }
 
+" Functions {
+    "" Show highlighting groups for current word
+    nmap <C-n> :call <SID>SynStack()<CR>
+    function! <SID>SynStack()
+        if !exists("*synstack")
+            return
+        endif
+        echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    endfunc
+" }
+
 " Plugins {
+    " Tabline {
+    " }
     " Emmet {
         let g:user_emmet_settings = {
         \   'indentation': '  ',
