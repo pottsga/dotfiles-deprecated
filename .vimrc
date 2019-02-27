@@ -1,4 +1,11 @@
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" .vimrc
+" AUTHOR: Greg Potts
+" CREATED_ON: Feb 26, 2019
+
+" ITALICS: https://sookocheff.com/post/vim/italics/ 
+" PLUG: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+" ---
 
 " Plugins {
     call plug#begin()
@@ -11,6 +18,7 @@
     Plug 'rafi/awesome-vim-colorschemes' 
     Plug 'mattn/emmet-vim'              " Emmet
     Plug 'scrooloose/nerdtree'          " NERDTree
+    Plug 'mkitt/tabline.vim'            " Better tab-line
 
     call plug#end()
 " }
@@ -28,7 +36,7 @@
 " }
 
 " Colorscheme {
-    colo onedark                        " Set colorscheme
+    colo pottsga
 " }
 
 " Text-rendering {
@@ -82,7 +90,9 @@
     set showcmd                         " Show command in the bottom bar
     set wildmenu                        " Visual autocomplete for command menu
     set colorcolumn=75                  " Show a visual marker at 75 cols 
-
+    set t_Co=256                        " 256 colors
+    set cursorline                      " Enable the cursor line
+    set laststatus=2                    " Always show the statusline
 " }
 
 " Navigation {
@@ -91,9 +101,37 @@
     nnoremap <C-K> <C-W><C-K>
     nnoremap <C-L> <C-W><C-L>
     nnoremap <C-H> <C-W><C-H>
+
+    nnoremap <leader>j 5<C-W>-
+    nnoremap <leader>k 5<C-W>+
+    nnoremap <leader>l 5<C-W><
+    nnoremap <leader>h 5<C-W>>
+" }
+
+" Functions {
+    nmap <leader>sp :call <SID>SynStack()<CR>
+    function! <SID>SynStack()
+      if !exists("*synstack")
+        return
+      endif
+      echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    endfunc
+
+    nmap <leader>sg :call <SID>SynId()<CR>
+    function! <SID>SynId()
+        let s = synID(line('.'), col('.'), 1) 
+        echo synIDattrgs, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
+    endfunc
+
 " }
 
 " Plugins {
+    " CTRLP {
+        let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+        if executable('ag')
+            let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        endif 
+    " }
     " Emmet {
         let g:user_emmet_settings = {
         \   'indentation': '  ',
