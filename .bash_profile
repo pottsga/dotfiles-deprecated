@@ -1,3 +1,6 @@
+# export ORACLE_HOME=/opt/oracle;
+# export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_12_1;
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
