@@ -1,20 +1,8 @@
-<<<<<<< HEAD
 " .vimrc
 " AUTHOR: Greg Potts
 " CREATED_ON: Feb 26, 2019
-
 " ITALICS: https://sookocheff.com/post/vim/italics/ 
 " PLUG: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-=======
-" AUTHOR: Greg Potts
-
-" SUMMARY: .vimrc
-
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" Refer to the article at https://sookocheff.com/post/vim/italics/ on how to enable italics
->>>>>>> refs/remotes/origin/simplified
-
-" ---
 
 " Plugins {
     call plug#begin()
@@ -23,17 +11,13 @@
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
     Plug 'leafgarland/typescript-vim'   " Typescript Syntax
     Plug 'mxw/vim-jsx'                  " JSX-syntax
+    Plug 'plasticboy/vim-markdown'      " Markdown syntax
+    Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
 
     Plug 'kien/ctrlp.vim'               " CTRLP
     Plug 'mattn/emmet-vim'              " Emmet
     Plug 'scrooloose/nerdtree'          " NERDTree
-<<<<<<< HEAD
     Plug 'mkitt/tabline.vim'            " Better tab-line
-    Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
-=======
-    Plug 'lepture/vim-jinja'            " vim-jinja
-    Plug 'mkitt/tabline.vim'            " Tabline stuff
->>>>>>> refs/remotes/origin/simplified
 
     call plug#end()
 " }
@@ -51,11 +35,6 @@
 " }
 
 " Colorscheme {
-<<<<<<< HEAD
-=======
-    " colo onedark                        " Set colorscheme
-    set t_Co=256
->>>>>>> refs/remotes/origin/simplified
     colo pottsga
 " }
 
@@ -161,16 +140,11 @@
 " }
 
 " Plugins {
-<<<<<<< HEAD
     " CTRLP {
         let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
         if executable('ag')
             let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
         endif 
-=======
-    " Tabline {
->>>>>>> refs/remotes/origin/simplified
-    " }
     " Emmet {
         let g:user_emmet_settings = {
         \   'indentation': '  ',
