@@ -5,34 +5,41 @@ if (exists("syntax_on"))
 endif
 let g:colors_name="pottsga"
 
-" LineNR 
-hi LineNR ctermfg=Grey
-hi CursorLineNR term=bold cterm=bold ctermfg=Red
-hi CursorLine term=NONE cterm=NONE
+" UI
+hi Normal               ctermfg=White   ctermbg=NONE
 
-" TabLine
-hi TabLineFill ctermfg=NONE ctermbg=NONE cterm=NONE
-hi TabLine ctermfg=White ctermbg=NONE cterm=NONE
-hi TabLineSel ctermfg=Black ctermbg=White cterm=NONE
+" LineNR 
+hi LineNR               ctermfg=Grey    ctermbg=NONE
+hi CursorLineNR         ctermfg=White   ctermbg=Red     cterm=bold
+hi CursorLine                                           cterm=NONE
+
+" TabLinoe
+hi TabLineFill          ctermfg=NONE    ctermbg=NONE    cterm=NONE
+hi TabLine              ctermfg=White   ctermbg=NONE    cterm=NONE
+hi TabLineSel           ctermfg=Black   ctermbg=White   cterm=NONE
+
+" StatusLine
+hi StatusLine           ctermfg=Red     ctermbg=NONE
+hi StatusLineNC         ctermfg=White   ctermfg=NONE
 
 " NerdTree
-hi NerdTreeCWD ctermfg=Red
-hi NerdTreeDir ctermfg=Blue
-hi NerdTreeUp ctermfg=Grey
-hi NerdTreeHelp ctermfg=Grey
+hi NerdTreeCWD          ctermfg=Red
+hi NerdTreeDir          ctermfg=Blue
+hi NerdTreeUp           ctermfg=Grey
+hi NerdTreeHelp         ctermfg=Grey
 
 " Syntax
-hi Comment cterm=italic ctermfg=Grey ctermbg=NONE
-hi Function ctermfg=Cyan ctermbg=NONE
-hi Type ctermfg=Cyan ctermbg=NONE
-hi Statement ctermfg=Green ctermbg=NONE
+hi Comment              ctermfg=Grey    ctermbg=NONE    cterm=italic
+hi Function             ctermfg=Cyan    ctermbg=NONE
+hi Type                 ctermfg=Cyan    ctermbg=NONE
+hi String               ctermfg=Green   ctermbg=NONE
 
 " HTML
-hi htmlTag ctermfg=Grey
-hi htmlEndTag ctermfg=Grey
-hi htmlTagName ctermfg=Red
-hi htmlArg ctermfg=Yellow
-hi htmlString ctermfg=Green
+hi htmlTag              ctermfg=Grey
+hi htmlEndTag           ctermfg=Grey
+hi htmlTagName          ctermfg=Red
+hi htmlArg              ctermfg=Yellow
+hi htmlString           ctermfg=Green
 hi link htmlScriptTag htmlTag
 hi link htmlSpecialTagName htmlTagName
 
@@ -45,18 +52,25 @@ hi link xmlAttrib htmlArg
 hi link xmlString htmlString
 
 " JS
-hi jsString ctermfg=Green
-hi jsTemplateString ctermfg=Green
+hi jsString             ctermfg=Green
+hi jsTemplateString     ctermfg=Green
 hi jsTemplateExpression ctermfg=Magenta
-hi jsTemplateBraces ctermfg=Yellow
-hi jsNumber ctermfg=Magenta
-hi jsFunction ctermfg=Green
-hi jsReturn ctermfg=Magenta
+hi jsTemplateBraces     ctermfg=Yellow
+hi jsNumber             ctermfg=Magenta
+hi jsFunction           ctermfg=Magenta
+hi jsReturn             ctermfg=Magenta
 
 " Python
-hi pythonStatement ctermfg=Magenta
+hi pythonStatement      ctermfg=Magenta
 
 " CSS
-hi cssClassName ctermfg=Yellow
-hi cssIdentifier ctermfg=Green
-hi cssTagName ctermfg=Red
+hi cssClassName         ctermfg=Yellow
+hi cssIdentifier        ctermfg=Green
+hi cssTagName           ctermfg=Red
+
+" Jinja2
+hi jinjaVariable        ctermfg=Blue
+hi jinjaString          ctermfg=Green
+hi jinjaFilter          ctermfg=Red
+hi jinjaAttribute       ctermfg=Yellow
+hi jinjaStatement       ctermfg=Magenta

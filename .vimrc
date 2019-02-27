@@ -10,15 +10,16 @@
 " Plugins {
     call plug#begin()
 
+    Plug 'vim-python/python-syntax'     " Improved Python syntax
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
-    Plug 'leafgarland/typescript-vim'   " Improved JS syntax
+    Plug 'leafgarland/typescript-vim'   " Typescript Syntax
     Plug 'mxw/vim-jsx'                  " JSX-syntax
-    Plug 'nelsyeung/twig.vim'           " Jinja2 syntax
+
     Plug 'kien/ctrlp.vim'               " CTRLP
-    Plug 'rafi/awesome-vim-colorschemes' 
     Plug 'mattn/emmet-vim'              " Emmet
     Plug 'scrooloose/nerdtree'          " NERDTree
     Plug 'mkitt/tabline.vim'            " Better tab-line
+    Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
 
     call plug#end()
 " }
@@ -84,15 +85,19 @@
     set number                          " Show line numbers
     set nowrap                          " Don't wrap lines
     set ruler                           " Always show the cursor's position
-    set mouse=a                         " Allow mouse for scrolling/resizing
+    set mouse=nicr                      " Allow mouse for scrolling/resizing
     set splitbelow                      " Split horizontally below the current pane (sane)
     set splitright                      " Split vertically to the right of the current pane (sane)
     set showcmd                         " Show command in the bottom bar
     set wildmenu                        " Visual autocomplete for command menu
-    set colorcolumn=75                  " Show a visual marker at 75 cols 
-    set t_Co=256                        " 256 colors
-    set cursorline                      " Enable the cursor line
+    set colorcolumn=80                  " Show a visual marker at 75 cols 
+    " set cursorline                      " Enable the cursor line
     set laststatus=2                    " Always show the statusline
+    set statusline=%f
+
+    if !has('gui-running')
+        set t_Co=256                    " 256 colors
+    endif
 " }
 
 " Navigation {
@@ -117,11 +122,11 @@
       echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
     endfunc
 
-    nmap <leader>sg :call <SID>SynId()<CR>
-    function! <SID>SynId()
-        let s = synID(line('.'), col('.'), 1) 
-        echo synIDattrgs, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
-    endfunc
+    nmap <leader>sg :call <SID>SynGroup()<CR>
+    function! <SID>SynGroup()
+        let l:s = synID(line('.'), col('.'), 1)
+        echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+    endfun
 
 " }
 
@@ -150,6 +155,10 @@
         \]
 
         nnoremap <C-t> :NERDTreeToggle<CR>
+    " }
+
+    " Python-syntax {
+        let g:python_highlight_all=1 
     " }
 " }
 
