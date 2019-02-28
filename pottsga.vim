@@ -7,19 +7,20 @@ let g:colors_name="pottsga"
 
 " UI
 hi Normal               ctermfg=White   ctermbg=NONE
+hi ColorColumn          ctermbg=Grey
 
 " LineNR 
 hi LineNR               ctermfg=Grey    ctermbg=NONE
 hi CursorLineNR         ctermfg=White   ctermbg=Red     cterm=bold
 hi CursorLine                                           cterm=NONE
 
-" TabLinoe
+" TabLine
 hi TabLineFill          ctermfg=NONE    ctermbg=NONE    cterm=NONE
 hi TabLine              ctermfg=White   ctermbg=NONE    cterm=NONE
 hi TabLineSel           ctermfg=Black   ctermbg=White   cterm=NONE
 
 " StatusLine
-hi StatusLine           ctermfg=Red     ctermbg=NONE
+hi StatusLine           ctermfg=Grey    ctermbg=NONE
 hi StatusLineNC         ctermfg=White   ctermfg=NONE
 
 " NerdTree
@@ -35,8 +36,8 @@ hi Type                 ctermfg=Cyan    ctermbg=NONE
 hi String               ctermfg=Green   ctermbg=NONE
 
 " HTML
-hi htmlTag              ctermfg=Grey
-hi htmlEndTag           ctermfg=Grey
+hi htmlTag              ctermfg=Red
+hi htmlEndTag           ctermfg=Red
 hi htmlTagName          ctermfg=Red
 hi htmlArg              ctermfg=Yellow
 hi htmlString           ctermfg=Green
@@ -45,9 +46,9 @@ hi link htmlSpecialTagName htmlTagName
 
 " XML (JSX)
 hi link xmlTag htmlTag
-hi link xmlEndTag xmlTag
+hi link xmlEndTag htmlTagName
 hi link xmlTagName htmlTagName
-hi link xmlTagN xmlTagName
+hi link xmlTagN htmlTagName
 hi link xmlAttrib htmlArg
 hi link xmlString htmlString
 

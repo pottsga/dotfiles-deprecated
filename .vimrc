@@ -7,12 +7,14 @@
 " Plugins {
     call plug#begin()
 
+    " Syntax
     Plug 'vim-python/python-syntax'     " Improved Python syntax
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
     Plug 'leafgarland/typescript-vim'   " Typescript Syntax
     Plug 'mxw/vim-jsx'                  " JSX-syntax
     Plug 'plasticboy/vim-markdown'      " Markdown syntax
     Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
+    Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
     Plug 'kien/ctrlp.vim'               " CTRLP
     Plug 'mattn/emmet-vim'              " Emmet
@@ -31,7 +33,6 @@
     set backspace=indent,eol,start      " Sane backspacing
     set confirm                         " Ask before closing a file
     set autoread                        " Automatically read files changed outside vim
-
 " }
 
 " Colorscheme {
@@ -39,31 +40,35 @@
 " }
 
 " Text-rendering {
-	set encoding=utf-8		            " Editor's encoding is UTF8
+	set encoding=utf-8		          " Editor's encoding is UTF8
 	set scrolloff=8			            " Number of lines to keep under the current line
-	set sidescrolloff=15	            " Number of columns to keep to the right
-    set sidescroll=1
+	set sidescrolloff=15            " Number of columns to keep to the right
+  set sidescroll=1
 
 	syntax enable			            " Turn on syntax highlighting
+" }
+
+" Syntax {
+    autocmd BufRead,BufNewFile *.js setlocal syntax=javascript.jsx
+
+    " Prettier
+    let g:prettier#autoformat = 0
+    autocmd BufWritePre
+          \ *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html
+          \ PrettierAsync
 " }
 
 " Indentation {
 	set autoindent 			            " New lines inhreit indentation of previous
 	set expandtab			            " Convert tabs to spaces
-	set shiftwidth=4		            " When shifting, indent four spaces
-	set tabstop=4			            " Set number of spaces for a tab
+	set shiftwidth=2		            " When shifting, indent four spaces
+	set tabstop=2			            " Set number of spaces for a tab
 	set smarttab			            " Set 'tabstop' number of spaces on tab press
 
-    " HTML-specific indentation
+  " Python-specific indentation
 	autocmd BufRead,BufNewFile 
-		\ *.htm,*.html,*.twig,*.jinja,*.jinja2,*.cshtml
-		\ setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
-    " CSS-specific indentation
-	autocmd BufRead,BufNewFile 
-		\ *.css,*.scss,*.sass 
-		\ setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
+		\ *.py
+		\ setlocal tabstop=4 shiftwidth=4 softtabstop=4
 " }
 
 " Netrw {
@@ -91,7 +96,7 @@
     set colorcolumn=80                  " Show a visual marker at 75 cols 
     " set cursorline                      " Enable the cursor line
     set laststatus=2                    " Always show the statusline
-    set statusline=%f
+    " set statusline=%f
 
     if !has('gui-running')
         set t_Co=256                    " 256 colors
@@ -126,17 +131,6 @@
         echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
     endfun
 
-" }
-
-" Functions {
-    "" Show highlighting groups for current word
-    nmap <C-n> :call <SID>SynStack()<CR>
-    function! <SID>SynStack()
-        if !exists("*synstack")
-            return
-        endif
-        echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-    endfunc
 " }
 
 " Plugins {
