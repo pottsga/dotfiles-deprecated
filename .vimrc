@@ -162,5 +162,9 @@
     " Python-syntax {
         let g:python_highlight_all=1 
     " }
+
+    " Vim-prettier {
+       let g:prettier#quickfix_auto_focus = 0
+    " }
 " }
 
