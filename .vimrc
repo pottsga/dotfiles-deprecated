@@ -27,12 +27,15 @@
 " General {
     filetype plugin indent on
     let mapleader=","
-    set nocompatible			        " Use VIM settings not VI settings	
+    set nocompatible			              " Use VIM settings not VI settings	
     set noswapfile                      " Disable .swp files
     set nobackup                        " Disable backup files
     set backspace=indent,eol,start      " Sane backspacing
     set confirm                         " Ask before closing a file
     set autoread                        " Automatically read files changed outside vim
+    set clipboard=unnamedplus           " use the clipboards of vim and win
+    set paste                           " Paste from a windows or from vim
+    set go+=a                           " Visual selection automatically copied to the clipboard
 " }
 
 " Colorscheme {
@@ -40,12 +43,12 @@
 " }
 
 " Text-rendering {
-	set encoding=utf-8		          " Editor's encoding is UTF8
-	set scrolloff=8			            " Number of lines to keep under the current line
-	set sidescrolloff=15            " Number of columns to keep to the right
+	set encoding=utf-8		                " Editor's encoding is UTF8
+	set scrolloff=8			                  " Number of lines to keep under the current line
+	set sidescrolloff=15                  " Number of columns to keep to the right
   set sidescroll=1
 
-	syntax enable			            " Turn on syntax highlighting
+	syntax enable			                    " Turn on syntax highlighting
 " }
 
 " Syntax {
@@ -71,13 +74,6 @@
 		\ setlocal tabstop=4 shiftwidth=4 softtabstop=4
 " }
 
-" Netrw {
-    let g:netrw_liststyle=3             " Show tree-style lists
-    let g:netrw_banner=0                " Disable banner
-    let g:netrw_browse_split=3          " Open new files in a new tab
-    let g:netrw_cursor=0
-" }
-
 " Search {
     set hlsearch!                       " Enable highlight-searchign
     set incsearch                       " Show partial matches
@@ -88,15 +84,13 @@
     set number                          " Show line numbers
     set nowrap                          " Don't wrap lines
     set ruler                           " Always show the cursor's position
-    set mouse=nicr                      " Allow mouse for scrolling/resizing
+    " set mouse=nicr                      " Allow mouse for scrolling/resizing
     set splitbelow                      " Split horizontally below the current pane (sane)
     set splitright                      " Split vertically to the right of the current pane (sane)
     set showcmd                         " Show command in the bottom bar
     set wildmenu                        " Visual autocomplete for command menu
     set colorcolumn=80                  " Show a visual marker at 75 cols 
-    " set cursorline                      " Enable the cursor line
     set laststatus=2                    " Always show the statusline
-    " set statusline=%f
 
     if !has('gui-running')
         set t_Co=256                    " 256 colors
@@ -165,6 +159,12 @@
 
     " Vim-prettier {
        let g:prettier#quickfix_auto_focus = 0
+    " }
+    
+    " plasticboy/vim-markdown {
+       let g:vim_markdown_folding_disabled = 1
+       let g:vim_markdown_frontmatter = 1
+
     " }
 " }
 
