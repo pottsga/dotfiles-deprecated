@@ -12,6 +12,7 @@
     Plug 'pangloss/vim-javascript'      " Improved JS syntax
     Plug 'leafgarland/typescript-vim'   " Typescript Syntax
     Plug 'mxw/vim-jsx'                  " JSX-syntax
+    Plug 'hail2u/vim-css3-syntax'       " CSS3 syntax
     Plug 'plasticboy/vim-markdown'      " Markdown syntax
     Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
     Plug 'prettier/vim-prettier', { 'do': 'npm install' }
@@ -33,7 +34,11 @@
     set backspace=indent,eol,start      " Sane backspacing
     set confirm                         " Ask before closing a file
     set autoread                        " Automatically read files changed outside vim
-    set clipboard=unnamedplus           " use the clipboards of vim and win
+    if system('uname -s') ==  "Darwin\n"
+      set clipboard=unnamed "OSX
+    else
+      set clipboard=unnamedplus "GNU/Linux
+    endif
     set paste                           " Paste from a windows or from vim
     set go+=a                           " Visual selection automatically copied to the clipboard
 " }
@@ -59,6 +64,11 @@
     autocmd BufWritePre
           \ *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html
           \ PrettierAsync
+
+    augroup VimCSS3Syntax
+      autocmd!
+      autocmd FileType css setlocal iskeyword+=-
+    augroup END
 " }
 
 " Indentation {
@@ -95,6 +105,15 @@
     if !has('gui-running')
         set t_Co=256                    " 256 colors
     endif
+
+    au BufRead,BufNewFile *.md setlocal textwidth=80
+" }
+
+" Folding {
+  set foldmethod=indent
+  set foldlevel=2
+  set nofoldenable
+  set foldnestmax=10
 " }
 
 " Navigation {
@@ -164,7 +183,6 @@
     " plasticboy/vim-markdown {
        let g:vim_markdown_folding_disabled = 1
        let g:vim_markdown_frontmatter = 1
-
     " }
 " }
 
