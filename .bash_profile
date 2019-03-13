@@ -11,6 +11,7 @@ fi;
 alias ls="ls -GFh"
 alias la="ls -al"
 alias mkdir="mkdir -pv"
+alias 256col="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 
 export EDITOR="vim"
 
