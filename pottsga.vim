@@ -7,7 +7,7 @@ let g:colors_name="pottsga"
 
 " UI
 hi Normal               ctermfg=White   ctermbg=NONE
-hi ColorColumn          ctermbg=Grey
+hi ColorColumn          ctermbg=Red    ctermfg=Black
 
 " LineNR 
 hi LineNR               ctermfg=Grey    ctermbg=NONE
@@ -20,7 +20,7 @@ hi TabLine              ctermfg=White   ctermbg=NONE    cterm=NONE
 hi TabLineSel           ctermfg=Black   ctermbg=White   cterm=NONE
 
 " StatusLine
-hi StatusLine           ctermfg=Grey    ctermbg=NONE
+hi StatusLine           ctermfg=Black   ctermbg=Red      cterm=bold
 hi StatusLineNC         ctermfg=White   ctermfg=NONE
 
 " NerdTree
