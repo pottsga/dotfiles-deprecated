@@ -8,19 +8,19 @@
   call plug#begin()
 
   " Syntax
-  Plug 'vim-python/python-syntax'     " Improved Python syntax
-  Plug 'pangloss/vim-javascript'      " Improved JS syntax
-  Plug 'leafgarland/typescript-vim'   " Typescript Syntax
-  Plug 'mxw/vim-jsx'                  " JSX-syntax
-  Plug 'hail2u/vim-css3-syntax'       " CSS3 syntax
-  Plug 'plasticboy/vim-markdown'      " Markdown syntax
-  Plug 'Glench/Vim-Jinja2-Syntax'     " Jinja2
+  Plug 'vim-python/python-syntax'       " Improved Python syntax
+  Plug 'pangloss/vim-javascript'        " Improved JS syntax
+  Plug 'leafgarland/typescript-vim'     " Typescript Syntax
+  Plug 'mxw/vim-jsx'                    " JSX-syntax
+  Plug 'hail2u/vim-css3-syntax'         " CSS3 syntax
+  Plug 'plasticboy/vim-markdown'        " Markdown syntax
+  Plug 'Glench/Vim-Jinja2-Syntax'       " Jinja2
   Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
-  Plug 'kien/ctrlp.vim'               " CTRLP
-  Plug 'mattn/emmet-vim'              " Emmet
-  Plug 'scrooloose/nerdtree'          " NERDTree
-  Plug 'mkitt/tabline.vim'            " Better tab-line
+  Plug 'kien/ctrlp.vim'                 " CTRLP
+  Plug 'mattn/emmet-vim'                " Emmet
+  Plug 'scrooloose/nerdtree'            " NERDTree
+  Plug 'mkitt/tabline.vim'              " Better tab-line
 
   call plug#end()
 " }
@@ -28,30 +28,64 @@
 " General {
   filetype plugin indent on
   let mapleader=","
-  set nocompatible			              " Use VIM settings not VI settings	
-  set noswapfile                      " Disable .swp files
-  set nobackup                        " Disable backup files
-  set backspace=indent,eol,start      " Sane backspacing
-  set confirm                         " Ask before closing a file
-  set autoread                        " Automatically read files changed outside vim
+  set nocompatible                      " Use VIM settings not VI settings	
+  set noswapfile                        " Disable .swp files
+  set nobackup                          " Disable backup files
+  set backspace=indent,eol,start        " Sane backspacing
+  set confirm                           " Ask before closing a file
+  set autoread                          " Automatically read files changed outside vim
+
+  " Clipboard settings
   if system('uname -s') ==  "Darwin\n"
-    set clipboard=unnamed             "OSX
+    set clipboard=unnamed               " OSX
   else
-    set clipboard=unnamedplus         "GNU/Linux
+    set clipboard=unnamedplus           " GNU/Linux
   endif
-  set go+=a                           " Visual selection automatically copied to the clipboard
 " }
 
 " Colorscheme {
-    colo pottsga
+  colo pottsga
 " }
 
-" Text-rendering {
-	set encoding=utf-8		                " Editor's encoding is UTF8
+" Text-rendering/Indentation {
+	set encoding=utf-8                    " Editor's encoding is UTF8
 	set scrolloff=8			                  " Number of lines to keep under the current line
 	set sidescrolloff=15                  " Number of columns to keep to the right
   set sidescroll=1
 	syntax enable			                    " Turn on syntax highlighting
+
+	set autoindent 			                  " New lines inhreit indentation of previous
+	set expandtab			                    " Convert tabs to spaces
+	set shiftwidth=2		                  " When shifting, indent four spaces
+	set tabstop=2			                    " Set number of spaces for a tab
+	set smarttab			                    " Set 'tabstop' number of spaces on tab press
+
+  " Python-specific indentation
+	autocmd BufRead,BufNewFile 
+		\ *.py
+		\ setlocal tabstop=4 shiftwidth=4 softtabstop=4
+" }
+
+" UI {
+  set hlsearch!                         " Enable highlight-searching
+  set incsearch                         " Show partial matches
+  set smartcase                         " Switch to case-sensitive when contains upcase letter
+
+  set number                            " Show line numbers
+  set nowrap                            " Don't wrap lines
+  set ruler                             " Always show the cursor's position
+  set splitbelow                        " Split horizontally below the current pane (sane)
+  set splitright                        " Split vertically to the right of the current pane (sane)
+  set showcmd                           " Show command in the bottom bar
+  set wildmenu                          " Visual autocomplete for command menu
+  set colorcolumn=80                    " Show a visual marker at 75 cols 
+  set laststatus=2                      " Always show the statusline
+
+  if !has('gui-running')
+      set t_Co=256                      " 256 colors
+  endif
+
+  au BufRead,BufNewFile *.md setlocal textwidth=80
 " }
 
 " Syntax {
@@ -67,50 +101,6 @@
     autocmd!
     autocmd FileType css setlocal iskeyword+=-
   augroup END
-" }
-
-" Indentation {
-	set autoindent 			            " New lines inhreit indentation of previous
-	set expandtab			            " Convert tabs to spaces
-	set shiftwidth=2		            " When shifting, indent four spaces
-	set tabstop=2			            " Set number of spaces for a tab
-	set smarttab			            " Set 'tabstop' number of spaces on tab press
-
-  " Python-specific indentation
-	autocmd BufRead,BufNewFile 
-		\ *.py
-		\ setlocal tabstop=4 shiftwidth=4 softtabstop=4
-" }
-
-" Search {
-  set hlsearch!                       " Enable highlight-searchign
-  set incsearch                       " Show partial matches
-  set smartcase                       " Switch to case-sensitive when contains upcase letter
-" }
-
-" UI {
-  set number                          " Show line numbers
-  set nowrap                          " Don't wrap lines
-  set ruler                           " Always show the cursor's position
-  set splitbelow                      " Split horizontally below the current pane (sane)
-  set splitright                      " Split vertically to the right of the current pane (sane)
-  set showcmd                         " Show command in the bottom bar
-  set wildmenu                        " Visual autocomplete for command menu
-  set colorcolumn=80                  " Show a visual marker at 75 cols 
-  set laststatus=2                    " Always show the statusline
-
-  if !has('gui-running')
-      set t_Co=256                    " 256 colors
-  endif
-
-  au BufRead,BufNewFile *.md setlocal textwidth=80
-" }
-
-" Folding {
-  set foldmethod=indent
-  set foldlevel=2
-  set nofoldenable
-  set foldnestmax=10
 " }
 
 " Navigation {
@@ -142,7 +132,7 @@
   endfun
 " }
 
-" Plugins {
+" Plugin Configuration {
   " CTRLP {
     let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
     if executable('ag')
@@ -151,8 +141,8 @@
   "}
   " Emmet {
     let g:user_emmet_settings = {
-          \   'indentation': '  ',
-          \ }
+    \   'indentation': '  ',
+    \ }
     let g:user_emmet_complete_tag = 1
     let g:user_emmet_expandabbr_key = '<C-J>'
   " }
@@ -161,10 +151,10 @@
     let g:NERDTreeDirArrows=0
     let g:NERDTreeNodeDelimiter = "\u00a0"
     let g:NERDTreeIgnore=[
-          \   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', 
-          \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', 
-          \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
-          \]
+    \   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', 
+    \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', 
+    \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
+    \ ]
 
     nnoremap <C-t> :NERDTreeToggle<CR>
   " }
