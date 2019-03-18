@@ -39,7 +39,6 @@
   else
     set clipboard=unnamedplus         "GNU/Linux
   endif
-  set paste                           " Paste from a windows or from vim
   set go+=a                           " Visual selection automatically copied to the clipboard
 " }
 
