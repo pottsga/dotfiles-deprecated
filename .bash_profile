@@ -5,6 +5,7 @@ if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi;
 
+alias ssh="ssh -Y"
 alias ls="ls -GFh"
 alias la="ls -al"
 alias mkdir="mkdir -pv"
