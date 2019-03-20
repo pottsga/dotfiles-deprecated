@@ -75,3 +75,6 @@ hi jinjaString          ctermfg=Green
 hi jinjaFilter          ctermfg=Red
 hi jinjaAttribute       ctermfg=Yellow
 hi jinjaStatement       ctermfg=Magenta
+
+" NERDTree
+hi NERDTreeDirSlash     ctermfg=Grey

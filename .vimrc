@@ -35,6 +35,7 @@
   set confirm                           " Ask before closing a file
   set autoread                          " Automatically read files changed outside vim
 
+
   " Clipboard settings
   if system('uname -s') ==  "Darwin\n"
     set clipboard=unnamed               " OSX
@@ -56,17 +57,20 @@
 
 	set autoindent 			                  " New lines inhreit indentation of previous
 	set expandtab			                    " Convert tabs to spaces
-	set shiftwidth=2		                  " When shifting, indent four spaces
-	set tabstop=2			                    " Set number of spaces for a tab
 	set smarttab			                    " Set 'tabstop' number of spaces on tab press
 
-  " Python-specific indentation
-	autocmd BufRead,BufNewFile 
-		\ *.py
-		\ setlocal tabstop=4 shiftwidth=4 softtabstop=4
+	set shiftwidth=2		                  " When shifting, indent four spaces
+	set tabstop=2			                    " Set number of spaces for a tab
+
+  autocmd FileType text setlocal textwidth=78
+  autocmd FileType markdown setlocal wrap
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 " }
 
 " UI {
+  set fillchars+=vert:│                 " Use tall pipe in split separators
+
+  nnoremap <leader><space> :noh<cr>
   set hlsearch!                         " Enable highlight-searching
   set incsearch                         " Show partial matches
   set smartcase                         " Switch to case-sensitive when contains upcase letter
@@ -132,43 +136,58 @@
   endfun
 " }
 
-" Plugin Configuration {
-  " CTRLP {
-    let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-    if executable('ag')
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    endif 
-  "}
-  " Emmet {
-    let g:user_emmet_settings = {
-    \   'indentation': '  ',
-    \ }
-    let g:user_emmet_complete_tag = 1
-    let g:user_emmet_expandabbr_key = '<C-J>'
-  " }
+" NETRW {
+  let g:netrw_winsize=-40               " Absolute sizing
+  let g:netrw_liststyle=3               " Tree
+  let g:netrw_browse_split=4            " Open new file in previous window
+  let g:netrw_altv=1
+  autocmd FileType netrw set nolist
+  nnoremap <C-t> :Lexp<cr>
+" }
 
-  " NERDTree {
-    let g:NERDTreeDirArrows=0
-    let g:NERDTreeNodeDelimiter = "\u00a0"
-    let g:NERDTreeIgnore=[
-    \   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', 
-    \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', 
-    \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
-    \ ]
+" CTRLP {
+  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif 
+"}
+" Emmet {
+  let g:user_emmet_settings = {
+  \   'indentation': '  ',
+  \ }
+  let g:user_emmet_complete_tag = 1
+  let g:user_emmet_expandabbr_key = '<C-J>'
+" }
 
-    nnoremap <C-t> :NERDTreeToggle<CR>
-  " }
+" NERDTree {
+  let g:NERDTreeDirArrowExpandable = ' ' 
+  let g:NERDTreeDirArrowCollapsible = ' '
+  let g:NERDTreeDirArrows=0
+  let g:NERDTreeNodeDelimiter = "\u00a0"
+  let g:NERDTreeIgnore=[
+  \   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', 
+  \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', 
+  \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
+  \ ]
 
-  " Python-syntax {
-    let g:python_highlight_all=1 
-  " }
+  " Automatically close vim if the only window left open is NERDTree
+  autocmd BufEnter * 
+  \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) 
+  \ | q | 
+  \ endif
 
-  " Vim-prettier {
-    let g:prettier#quickfix_auto_focus = 0
-  " }
+  nnoremap <C-t> :NERDTreeToggle<CR>
+" }
 
-  " plasticboy/vim-markdown {
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_frontmatter = 1
-  " }
+" Python-syntax {
+  let g:python_highlight_all=1 
+" }
+
+" Vim-prettier {
+  let g:prettier#quickfix_auto_focus = 0
+" }
+
+" plasticboy/vim-markdown {
+  let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_frontmatter = 1
 " }
