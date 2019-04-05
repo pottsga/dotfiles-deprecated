@@ -24,4 +24,9 @@ C_CYAN=$(tput setaf 6)
 C_WHITE=$(tput setaf 7)
 C_RESET=$(tput sgr0)
 
-export PS1="$C_GREEN\u@\h$C_RESET \w \$ "
+# Export the PS1 prompt
+#   NOTE: Non-printable characters (the colors above) need to be escaped by the
+#   \[ and \] characters otherwise, readline cannot keep track of the cursor
+#   position correctly causing the prompt to be overwritten and not act correctly.
+#   https://stackoverflow.com/questions/19092488/custom-bash-prompt-is-overwriting-itself
+export PS1="\[$C_GREEN\]\u@\h \[$C_RESET\]\w \$ "

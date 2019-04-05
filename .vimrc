@@ -10,12 +10,11 @@
   " Syntax
   Plug 'vim-python/python-syntax'       " Improved Python syntax
   Plug 'pangloss/vim-javascript'        " Improved JS syntax
-  Plug 'leafgarland/typescript-vim'     " Typescript Syntax
   Plug 'mxw/vim-jsx'                    " JSX-syntax
   Plug 'hail2u/vim-css3-syntax'         " CSS3 syntax
   Plug 'plasticboy/vim-markdown'        " Markdown syntax
   Plug 'Glench/Vim-Jinja2-Syntax'       " Jinja2
-  Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+  Plug 'leafgarland/typescript-vim'     " Typescript
 
   Plug 'kien/ctrlp.vim'                 " CTRLP
   Plug 'mattn/emmet-vim'                " Emmet
@@ -35,20 +34,6 @@
   set confirm                           " Ask before closing a file
   set autoread                          " Automatically read files changed outside vim
 
-
-  " Clipboard settings
-  if system('uname -s') ==  "Darwin\n"
-    set clipboard=unnamed               " OSX
-  else
-    set clipboard=unnamedplus           " GNU/Linux
-  endif
-" }
-
-" Colorscheme {
-  colo pottsga
-" }
-
-" Text-rendering/Indentation {
 	set encoding=utf-8                    " Editor's encoding is UTF8
 	set scrolloff=8			                  " Number of lines to keep under the current line
 	set sidescrolloff=15                  " Number of columns to keep to the right
@@ -65,9 +50,7 @@
   autocmd FileType text setlocal textwidth=78
   autocmd FileType markdown setlocal wrap
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-" }
 
-" UI {
   set fillchars+=vert:│                 " Use tall pipe in split separators
 
   nnoremap <leader><space> :noh<cr>
@@ -90,25 +73,25 @@
   endif
 
   au BufRead,BufNewFile *.md setlocal textwidth=80
-" }
 
-" Syntax {
+  " Clipboard settings
+  if system('uname -s') ==  "Darwin\n"
+    set clipboard=unnamed               " OSX
+  else
+    set clipboard=unnamedplus           " GNU/Linux
+  endif
+
+  " Colorscheme
+  colo pottsga
+
   autocmd BufRead,BufNewFile *.js setlocal syntax=javascript.jsx
-
-  " Prettier
-  let g:prettier#autoformat = 0
-  autocmd BufWritePre
-        \ *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html
-        \ PrettierAsync
 
   augroup VimCSS3Syntax
     autocmd!
     autocmd FileType css setlocal iskeyword+=-
   augroup END
-" }
 
-" Navigation {
-  " Move left, right, up, and down in windows with H,J,K,L
+  " Navigation - vim-keys for navigation
   nnoremap <C-J> <C-W><C-J>
   nnoremap <C-K> <C-W><C-K>
   nnoremap <C-L> <C-W><C-L>
@@ -136,21 +119,13 @@
   endfun
 " }
 
-" NETRW {
-  let g:netrw_winsize=-40               " Absolute sizing
-  let g:netrw_liststyle=3               " Tree
-  let g:netrw_browse_split=4            " Open new file in previous window
-  let g:netrw_altv=1
-  autocmd FileType netrw set nolist
-  nnoremap <C-t> :Lexp<cr>
-" }
-
 " CTRLP {
   let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   endif 
-"}
+" }
+
 " Emmet {
   let g:user_emmet_settings = {
   \   'indentation': '  ',
@@ -170,21 +145,11 @@
   \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
   \ ]
 
-  " Automatically close vim if the only window left open is NERDTree
-  autocmd BufEnter * 
-  \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) 
-  \ | q | 
-  \ endif
-
   nnoremap <C-t> :NERDTreeToggle<CR>
 " }
 
 " Python-syntax {
   let g:python_highlight_all=1 
-" }
-
-" Vim-prettier {
-  let g:prettier#quickfix_auto_focus = 0
 " }
 
 " plasticboy/vim-markdown {
