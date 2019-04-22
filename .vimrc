@@ -4,7 +4,7 @@
 
 set nocompatible " Don't try to be vi
 filetype plugin indent on
-syntax enable 
+syntax enable
 
 " General
 let mapleader=","
@@ -32,6 +32,6 @@ set incsearch " Show partial matches
 set smartcase " Switch to case-sensitive when contains upcase letter
 set laststatus=2 " Show the status line
 
-source ~/.vim/plugins.vim
-source ~/.vim/functions.vim
-source ~/.vim/autocmds.vim
+source ~/.vim/plugins.vim " plugin installation/configuration
+source ~/.vim/functions.vim " custom functions
+source ~/.vim/autocmds.vim " autocmds for specific tasks

@@ -26,6 +26,4 @@ let g:NERDTreeIgnore=[
 \   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk',
 \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
 \ ]
-
 nnoremap <C-t> :NERDTreeToggle<CR>
-
