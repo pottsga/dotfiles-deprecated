@@ -15,3 +15,17 @@ let g:user_emmet_settings = {
 \ }
 let g:user_emmet_complete_tag = 1
 let g:user_emmet_expandabbr_key = '<C-J>'
+
+" NERD Tree
+let g:NERDTreeDirArrowExpandable = ' '
+let g:NERDTreeDirArrowCollapsible = ' '
+let g:NERDTreeDirArrows=0
+let g:NERDTreeNodeDelimiter = "\u00a0"
+let g:NERDTreeIgnore=[
+\   '__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp',
+\   '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk',
+\   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
+\ ]
+
+nnoremap <C-t> :NERDTreeToggle<CR>
+
