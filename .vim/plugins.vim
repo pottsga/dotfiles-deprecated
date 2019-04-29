@@ -9,10 +9,7 @@ Plug 'mattn/emmet-vim' " Emmet
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-<<<<<<< HEAD
 Plug 'leafgarland/typescript-vim'
-=======
->>>>>>> 07c7ed10d1f0ea8c774d65d2430d83e670d5026f
 
 call plug#end()
 
