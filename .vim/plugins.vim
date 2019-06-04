@@ -14,6 +14,8 @@ Plug 'mxw/vim-jsx' "JSX Syntax
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 syntax
 Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
 
+Plug 'JulesWang/css.vim' " Modern css syntax
+
 call plug#end()
 
 " CONFIGURATION
