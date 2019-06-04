@@ -6,20 +6,26 @@ call plug#begin()
 
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
+Plug 'jiangmiao/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
 
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript' " JavaScript Syntax
+Plug 'mxw/vim-jsx' "JSX Syntax
+
+Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 syntax
+Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
 
 call plug#end()
 
-" Emmet Config
+" CONFIGURATION
+
+"" Emmet
 let g:user_emmet_settings = {
 \   'indentation': '  ',
 \ }
 let g:user_emmet_complete_tag = 1
 let g:user_emmet_expandabbr_key = '<C-J>'
 
-" NERD Tree
+"" NERD Tree
 let g:NERDTreeDirArrowExpandable = ' '
 let g:NERDTreeDirArrowCollapsible = ' '
 let g:NERDTreeDirArrows=0

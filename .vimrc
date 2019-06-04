@@ -7,31 +7,35 @@ filetype plugin indent on
 syntax enable
 
 " General
+colo pottsga
 let mapleader=","
 set backspace=indent,eol,start " Sane backspacing
 set autoread " Automatically read files changed outside of vim
-set noswapfile " Disable .swp file
-set nobackup " Disable backup files
+set noswapfile " Disable .sqp files
+set nobackup " Disable .bak files
 
 " Text
 set encoding=utf-8
-set autoindent " New lines inherit indentation of previous
-set expandtab " Convert tabs to spaces
-set shiftwidth=2 " When shifting '>>' or '<<' indent x spaces
-set tabstop=2 " Number of spaces for a tab
-set nowrap
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 
 " UI
-colo pottsga "~/.vim/colors/pottsga.vim
-set ruler " Show the ruler
-set number " Show line numbers
-set splitbelow " Split horizontally below the current pane (sane)
+set laststatus=2 " Show the status line at the bottom
+set ruler " Show ruler in the bottom-right hand corner
 set splitright " Split vertically to the right of the current pane (sane)
-set hlsearch " Enable highlight-searching
-set incsearch " Show partial matches
+set splitbelow " Split horizontally below the current pane (sane)
+set ignorecase " Ignore case in search
 set smartcase " Switch to case-sensitive when contains upcase letter
-set laststatus=2 " Show the status line
+set incsearch " Show partial matches
+set number " Show line number
+set wildmenu " Visual autocomplete for command menu
+set lazyredraw " Only redraw when you need to
+set ttyfast
 
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/autocmds.vim " autocmds for specific tasks
+source ~/.vim/snippets.vim " custom snippets
+source ~/.vim/language_settings.vim
