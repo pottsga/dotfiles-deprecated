@@ -38,3 +38,6 @@ let g:NERDTreeIgnore=[
 \   '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store'
 \ ]
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+"" auto-pairs
+au Filetype vim let b:AutoPairs = {"(": ")", "[": "]", "{": "}", "'": "'"}
