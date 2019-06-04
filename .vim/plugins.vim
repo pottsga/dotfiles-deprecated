@@ -11,10 +11,12 @@ Plug 'jiangmiao/auto-pairs' " Auto-write the end of [, {, (, quotes (single and 
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
 
-Plug 'Glench/Vim-Jinja2-Syntax' " Jinja2 syntax
+Plug 'pottsga/vim-jinja' " Jinja2 syntax
 Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
 
 Plug 'JulesWang/css.vim' " Modern css syntax
+
+Plug 'vim-python/python-syntax' " Python syntax
 
 call plug#end()
 
@@ -41,3 +43,8 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 
 "" auto-pairs
 au Filetype vim let b:AutoPairs = {"(": ")", "[": "]", "{": "}", "'": "'"}
+
+"" Python-syntax
+let g:python_highlight_indent_errors = 0
+let g:python_highlight_space_errors = 0
+let g:python_highlight_all = 1
