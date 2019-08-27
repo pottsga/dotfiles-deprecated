@@ -11,7 +11,7 @@ colo pottsga
 let mapleader=","
 set backspace=indent,eol,start " Sane backspacing
 set autoread " Automatically read files changed outside of vim
-set noswapfile " Disable .sqp files
+set noswapfile " Disable .swp files
 set nobackup " Disable .bak files
 
 " Text
@@ -33,6 +33,7 @@ set number " Show line number
 set wildmenu " Visual autocomplete for command menu
 set lazyredraw " Only redraw when you need to
 set ttyfast
+let g:loaded_matchparen=1
 
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions
