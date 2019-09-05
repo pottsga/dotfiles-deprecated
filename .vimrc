@@ -35,6 +35,12 @@ set lazyredraw " Only redraw when you need to
 set ttyfast
 let g:loaded_matchparen=1
 
+" Folding
+set foldmethod=indent
+set foldnestmax=10
+set foldlevelstart=1 " start off pre-folded, remember folds exist
+set foldopen= " don't automatically open my folds!
+
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/autocmds.vim " autocmds for specific tasks
