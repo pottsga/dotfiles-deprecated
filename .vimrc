@@ -33,7 +33,7 @@ set number " Show line number
 set wildmenu " Visual autocomplete for command menu
 set lazyredraw " Only redraw when you need to
 set ttyfast
-let g:loaded_matchparen=1
+let g:loaded_matchparen=1 "disable matching parenthees
 
 " Folding
 set foldmethod=indent
