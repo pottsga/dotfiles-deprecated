@@ -1,4 +1,3 @@
-
 " The plugin manager I use is VIM Plug. Install it by using the following command: 
 "   curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -8,6 +7,7 @@ Plug 'ctrlpvim/ctrlp.vim' " CTRLP
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
 Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
+Plug 'ctrlpvim/ctrlp.vim' " Ctrlp
 
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
