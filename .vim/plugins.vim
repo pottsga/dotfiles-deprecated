@@ -4,20 +4,17 @@
 
 call plug#begin()
 
+Plug 'ctrlpvim/ctrlp.vim' " CTRLP
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
-" Plug 'jiangmiao/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
 Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
 
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
 Plug 'leafgarland/typescript-vim' " Typescript
-
 Plug 'pottsga/vim-jinja' " Jinja2 syntax
 Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
-
 Plug 'JulesWang/css.vim' " Modern css syntax
-
 Plug 'vim-python/python-syntax' " Python syntax
 
 call plug#end()
