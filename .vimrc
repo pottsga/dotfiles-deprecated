@@ -15,9 +15,6 @@ set autoread " Automatically read files changed outside of vim
 set noswapfile " Disable .swp files
 set nobackup " Disable .bak files
 
-<<<<<<< HEAD
-source ~/.vim/ui.vim " ui configuration
-=======
 " Text
 set encoding=utf-8
 set tabstop=2
@@ -45,7 +42,7 @@ set foldnestmax=10
 set foldlevelstart=1 " start off pre-folded, remember folds exist
 set foldopen= " don't automatically open my folds!
 
->>>>>>> edb7eb95a01ec268f41ddecdedebd8d14018c4d5
+source ~/.vim/ui.vim " ui configuration
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/autocmds.vim " autocmds for specific tasks
