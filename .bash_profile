@@ -6,7 +6,7 @@ if [ -f ~/.bashrc ]; then
 fi;
 
 alias ssh="ssh -Y"
-alias ls="ls -GFh"
+alias ls="ls -GFhal"
 alias la="ls -al"
 alias mkdir="mkdir -pv"
 alias 256col="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"

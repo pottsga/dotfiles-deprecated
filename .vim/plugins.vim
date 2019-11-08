@@ -9,6 +9,7 @@ Plug 'mattn/emmet-vim' " Emmet
 Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
 Plug 'ctrlpvim/ctrlp.vim' " Ctrlp
 
+Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
 Plug 'leafgarland/typescript-vim' " Typescript
