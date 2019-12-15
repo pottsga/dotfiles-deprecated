@@ -15,7 +15,6 @@ set autoread " Automatically read files changed outside of vim
 set noswapfile " Disable .swp files
 set nobackup " Disable .bak files
 
-
 source ~/.vim/ui.vim " ui configuration
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions

@@ -6,8 +6,8 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim' " CTRLP
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
-Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
-Plug 'ctrlpvim/ctrlp.vim' " Ctrlp
+" Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
+" Plug 'ctrlpvim/ctrlp.vim' " Ctrlp
 
 Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
@@ -42,9 +42,12 @@ let g:NERDTreeIgnore=[
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 "" auto-pairs
-au Filetype vim let b:AutoPairs = {"(": ")", "[": "]", "{": "}", "'": "'"}
+" au Filetype vim let b:AutoPairs = {"(": ")", "[": "]", "{": "}", "'": "'"}
 
 "" Python-syntax
 let g:python_highlight_indent_errors = 0
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
+
+"" CtrlP
+set wildignore+=*/tmp*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/env/*
