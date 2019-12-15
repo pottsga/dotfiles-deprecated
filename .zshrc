@@ -1,3 +1,7 @@
+if ! [[ -d ~/.oh-my-zsh ]] then
+  echo "oh-my-zsh is required. Install it at https://ohmyz.sh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -24,5 +28,6 @@ source $ZSH/oh-my-zsh.sh
 #
 export EDITOR='vim'
 
+alias cp="cp -a" # when copying, copy directories too
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
 alias ssh="ssh -Y" # enable X-window forwarding by default
