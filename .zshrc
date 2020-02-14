@@ -31,3 +31,5 @@ export EDITOR='vim'
 alias cp="cp -a" # when copying, copy directories too
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
 alias ssh="ssh -Y" # enable X-window forwarding by default
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

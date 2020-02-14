@@ -3,11 +3,11 @@
 
 call plug#begin()
 
-Plug 'ctrlpvim/ctrlp.vim' " CTRLP
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
-" Plug 'pottsga/auto-pairs' " Auto-write the end of [, {, (, quotes (single and double)
-" Plug 'ctrlpvim/ctrlp.vim' " Ctrlp
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " FZF
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive' " Fugitive
 
 Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
@@ -17,7 +17,6 @@ Plug 'pottsga/vim-jinja' " Jinja2 syntax
 Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
 Plug 'JulesWang/css.vim' " Modern css syntax
 Plug 'vim-python/python-syntax' " Python syntax
-
 call plug#end()
 
 " CONFIGURATION
@@ -51,3 +50,8 @@ let g:python_highlight_all = 1
 
 "" CtrlP
 set wildignore+=*/tmp*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/env/*
+
+" FZF
+nnoremap <leader>of :Files<CR>
+nnoremap <leader>ob :Buffers<CR>
+nnoremap <leader>oc :Commits<CR>
