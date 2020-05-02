@@ -3,11 +3,14 @@ hi clear
 if (exists("syntax_on"))
     syntax reset
 endif
+
 let g:colors_name="pottsga"
 
 " UI
-hi Normal               ctermfg=White   ctermbg=NONE
-hi ColorColumn          ctermbg=Red    ctermfg=Black
+hi Normal      ctermfg=White ctermbg=NONE
+hi ColorColumn ctermbg=Red   ctermfg=Black
+hi Pmenu       ctermfg=NONE  ctermbg=236 cterm=NONE
+hi PmenuSel    ctermfg=NONE  ctermbg=24 cterm=NONE
 
 " LineNR 
 hi LineNR               ctermfg=Grey    ctermbg=NONE
@@ -20,8 +23,8 @@ hi TabLine              ctermfg=White   ctermbg=NONE    cterm=NONE
 hi TabLineSel           ctermfg=Black   ctermbg=White   cterm=NONE
 
 " StatusLine
-hi StatusLine           ctermfg=Black   ctermbg=Red      cterm=bold
-hi StatusLineNC         ctermfg=White   ctermfg=NONE
+hi StatusLine           ctermfg=Black   ctermbg=White
+hi StatusLineNC         ctermfg=Black   ctermfg=White
 
 " NerdTree
 hi NerdTreeCWD          ctermfg=Red

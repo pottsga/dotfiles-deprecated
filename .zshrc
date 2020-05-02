@@ -5,7 +5,7 @@ fi
 # Environment variables
 export PATH="$PATH:$HOME/drivers:$HOME/bin" # User configuration
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -27,3 +27,6 @@ source $ZSH/oh-my-zsh.sh
 alias ssh="ssh -Y" # enable X-window forwarding by default
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
 alias la="ls -GFhal"
+alias vim="nvim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -2,11 +2,10 @@
 set encoding=utf-8
 set tabstop=2
 set softtabstop=2
-set shiftwidth=2
+set shiftwidth=2 
 set expandtab
 
 " UI
-set laststatus=2 " Show the status line at the bottom
 set ruler " Show ruler in the bottom-right hand corner
 set splitright " Split vertically to the right of the current pane (sane)
 set splitbelow " Split horizontally below the current pane (sane)
@@ -17,7 +16,6 @@ set number " Show line number
 set wildmenu " Visual autocomplete for command menu
 set lazyredraw " Only redraw when you need to
 set ttyfast
-let g:loaded_matchparen=1
 
 if has('folding')
   if has('windows')
@@ -28,3 +26,14 @@ if has('folding')
   set foldlevelstart=1 " start off pre-folded, remember folds exist
   set foldopen= " don't automatically open my folds!
 endif
+
+"" Statusline
+set laststatus=2 " Show the status line at the bottom
+
+set statusline=
+set statusline+=\ %f
+set statusline+=\ %m
+set statusline+=%=
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}]
+set statusline+=\ %l:%c
