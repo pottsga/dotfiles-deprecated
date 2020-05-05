@@ -22,6 +22,9 @@ hi TabLineFill          ctermfg=NONE    ctermbg=NONE    cterm=NONE
 hi TabLine              ctermfg=White   ctermbg=NONE    cterm=NONE
 hi TabLineSel           ctermfg=Black   ctermbg=White   cterm=NONE
 
+" SignColumn 'gutter'
+hi SignColumn           ctermbg=Black
+
 " StatusLine
 hi StatusLine           ctermfg=Black   ctermbg=White
 hi StatusLineNC         ctermfg=Black   ctermfg=White

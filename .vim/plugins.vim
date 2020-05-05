@@ -6,7 +6,6 @@ call plug#begin()
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " FZF
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'evanleck/vim-svelte' " Svelte
@@ -14,11 +13,9 @@ Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
 Plug 'leafgarland/typescript-vim' " Typescript
 Plug 'pottsga/vim-jinja' " Jinja2 syntax
-" Plug 'Vimjas/vim-python-pep8-indent' " Pep8 indentation
 Plug 'JulesWang/css.vim' " Modern css syntax
 Plug 'vim-python/python-syntax' " Python syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -57,3 +54,37 @@ set wildignore+=*/tmp*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/env/*
 nnoremap <leader>of :Files<CR>
 nnoremap <leader>ob :Buffers<CR>
 nnoremap <leader>oc :Commits<CR>
+
+"" COC
+function! FloatScroll(forward) abort
+  let float = coc#util#get_float()
+  if !float | return '' | endif
+  let buf = nvim_win_get_buf(float)
+  let buf_height = nvim_buf_line_count(buf)
+  let win_height = nvim_win_get_height(float)
+  if buf_height < win_height | return '' | endif
+  let pos = nvim_win_get_cursor(float)
+  if a:forward
+    if pos[0] == 1
+      let pos[0] += 3 * win_height / 4
+    elseif pos[0] + win_height / 2 + 1 < buf_height
+      let pos[0] += win_height / 2 + 1
+    else
+      let pos[0] = buf_height
+    endif
+  else
+    if pos[0] == buf_height
+      let pos[0] -= 3 * win_height / 4
+    elseif pos[0] - win_height / 2 + 1  > 1
+      let pos[0] -= win_height / 2 + 1
+    else
+      let pos[0] = 1
+    endif
+  endif
+  call nvim_win_set_cursor(float, pos)
+  return ''
+endfunction
+
+""" scroll the popup window with up and down arrow keys
+inoremap <silent><expr> <down> coc#util#has_float() ? FloatScroll(1) : "\<down>"
+inoremap <silent><expr>  <up>  coc#util#has_float() ? FloatScroll(0) :  "\<up>"
