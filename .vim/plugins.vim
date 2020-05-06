@@ -6,6 +6,7 @@ call plug#begin()
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'mattn/emmet-vim' " Emmet
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " FZF
+Plug 'junegunn/fzf.vim' " FZF
 Plug 'airblade/vim-gitgutter'
 
 Plug 'evanleck/vim-svelte' " Svelte
