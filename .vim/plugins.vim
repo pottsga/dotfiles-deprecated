@@ -85,6 +85,7 @@ function! FloatScroll(forward) abort
   call nvim_win_set_cursor(float, pos)
   return ''
 endfunction
+let g:coc_node_path = '/usr/local/bin/node'
 
 """ scroll the popup window with up and down arrow keys
 inoremap <silent><expr> <down> coc#util#has_float() ? FloatScroll(1) : "\<down>"

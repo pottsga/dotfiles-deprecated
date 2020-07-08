@@ -21,10 +21,11 @@ set updatetime=300 " shorten update time for better user experience
 set shortmess+=c " don't give ins-completion-menu messages
 set signcolumn=yes " always show the signcolumn, otherwise text can shift
 set cmdheight=2 " more command height for displaying messages
+set clipboard=unnamed
 
 source ~/.vim/ui.vim " ui configuration
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/autocmds.vim " autocmds for specific tasks
 source ~/.vim/snippets.vim " custom snippets
-source ~/.vim/language_settings.vim
+source ~/.vim/language_settings.vim " language specific settings
