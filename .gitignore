@@ -1,3 +1,4 @@
 **/.netrwhist
 .vim/plugged/**
-
+.freeplane/*
+!.freeplane/**/templates/pottsga-standard-1.6.mm

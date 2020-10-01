@@ -26,7 +26,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias ssh="ssh -Y" # enable X-window forwarding by default
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
-alias la="ls -GFhal"
+alias ll="ls -GFhal"
 alias vim="nvim"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
