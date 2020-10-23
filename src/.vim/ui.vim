@@ -16,6 +16,7 @@ set number " Show line number
 set wildmenu " Visual autocomplete for command menu
 set lazyredraw " Only redraw when you need to
 set ttyfast
+colo nord " colorscheme
 
 if has('folding')
   if has('windows')

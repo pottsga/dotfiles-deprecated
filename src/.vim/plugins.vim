@@ -8,6 +8,7 @@ Plug 'mattn/emmet-vim' " Emmet
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " FZF
 Plug 'junegunn/fzf.vim' " FZF
 Plug 'airblade/vim-gitgutter'
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax

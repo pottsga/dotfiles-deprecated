@@ -7,9 +7,6 @@ set history=500
 filetype plugin indent on
 syntax enable
 
-" General
-colo pottsga
-
 let mapleader=","
 set backspace=indent,eol,start " Sane backspacing
 set autoread " Automatically read files changed outside of vim
@@ -23,8 +20,8 @@ set signcolumn=yes " always show the signcolumn, otherwise text can shift
 set cmdheight=2 " more command height for displaying messages
 set clipboard=unnamed
 
-source ~/.vim/ui.vim " ui configuration
 source ~/.vim/plugins.vim " plugin installation/configuration
+source ~/.vim/ui.vim " ui configuration
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/autocmds.vim " autocmds for specific tasks
 source ~/.vim/snippets.vim " custom snippets
