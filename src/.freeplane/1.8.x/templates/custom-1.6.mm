@@ -18,14 +18,14 @@
             </stylenode>
           </stylenode>
           <stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right">
-            <stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="bubble">
-              <font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+            <stylenode LOCALIZED_TEXT="styles.topic" COLOR="#000" STYLE="bubble">
+              <font NAME="SansSerif" SIZE="10"  ITALIC="true" />
             </stylenode>
             <stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="bubble">
-              <font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+              <font NAME="SansSerif" SIZE="10" BOLD="true"/>
             </stylenode>
             <stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
-              <font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+              <font NAME="SansSerif" SIZE="10" BOLD="true"/>
             </stylenode>
             <stylenode LOCALIZED_TEXT="styles.important">
               <icon BUILTIN="yes"/>
