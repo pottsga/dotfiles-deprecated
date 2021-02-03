@@ -6,7 +6,7 @@ function CompileToHTML()
   " within that subdirectory called html/.
   echo "Compiled '" . expand("%:t") . "' to 'html/" . expand("%:t") . ".html'"
   execute "silent ! mkdir -p html"
-  execute "silent ! pandoc --standalone -f markdown -t html % > html/%.html"
+  execute "silent ! pandoc --standalone -f gfm -t html % > html/%.html"
 endfunction
 
 autocmd BufWritePost *.notes.md call CompileToHTML()
