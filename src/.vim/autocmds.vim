@@ -1,7 +1,4 @@
-function CompileToHTML()
-
-  " echom "Compiled"+expand('%p')+"to html/"+expand('%p')+".html"
-  " echom "Compiled"+expand('%p')+"to html/"+expand('%p')+".html"
+function CompileCurrentFileToHTML()
   " Create an HTML subdirectory and compile the current file to HTML
   " within that subdirectory called html/.
   echo "Compiled '" . expand("%:t") . "' to 'html/" . expand("%:t") . ".html'"
@@ -9,5 +6,9 @@ function CompileToHTML()
   execute "silent ! pandoc --standalone -f gfm -t html % > html/%.html"
 endfunction
 
-autocmd BufWritePost *.notes.md call CompileToHTML()
+au BufWritePost *.notes.md
+      \ call CompileCurrentFileToHTML()
 
+" Automatically compile rmarkdown
+au Filetype rmd
+      \ map <leader>co :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>

@@ -9,6 +9,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " FZF
 Plug 'junegunn/fzf.vim' " FZF
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
+Plug 'tpope/vim-surround' " Vim surround
 
 Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
@@ -18,6 +19,9 @@ Plug 'pottsga/vim-jinja' " Jinja2 syntax
 Plug 'JulesWang/css.vim' " Modern css syntax
 Plug 'vim-python/python-syntax' " Python syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'vimwiki/vimwiki' " Vimwiki 
 
 call plug#end()
 

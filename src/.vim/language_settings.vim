@@ -8,6 +8,4 @@ au BufRead *.py
 au BufRead *.html
   \ setlocal ft=jinja
 
-" Markdown
-au BufRead,BufNewFile *.md
-  \ setlocal wrap " wrap lines
+au Filetype rmd map <leader>co :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>

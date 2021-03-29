@@ -1,4 +1,5 @@
 **/.netrwhist
 **/.vim/plugged/**
+**/.vim/autoload/**
 **/.DS_Store
 **/.backup/**

@@ -28,5 +28,7 @@ alias ssh="ssh -Y" # enable X-window forwarding by default
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
 alias ll="ls -GFhal"
 alias vim="nvim"
+alias mv="mv -v" # tell me what you mean
+alias cp="cp -v"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
