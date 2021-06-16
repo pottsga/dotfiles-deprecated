@@ -30,5 +30,6 @@ alias ll="ls -GFhal"
 alias vim="nvim"
 alias mv="mv -v" # tell me what you mean
 alias cp="cp -v"
+alias rm="rm -v"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

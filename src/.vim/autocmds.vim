@@ -6,6 +6,10 @@ function CompileCurrentFileToHTML()
   execute "silent ! pandoc --standalone -f gfm -t html % > html/%.html"
 endfunction
 
+" Daily notes text width
+au BufRead,BufNewFile notes.txt
+      \ setlocal textwidth=80
+
 au BufWritePost *.notes.md
       \ call CompileCurrentFileToHTML()
 
