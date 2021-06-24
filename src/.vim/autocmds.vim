@@ -1,18 +1,37 @@
-function CompileCurrentFileToHTML()
-  " Create an HTML subdirectory and compile the current file to HTML
-  " within that subdirectory called html/.
-  echo "Compiled '" . expand("%:t") . "' to 'html/" . expand("%:t") . ".html'"
-  execute "silent ! mkdir -p html"
-  execute "silent ! pandoc --standalone -f gfm -t html % > html/%.html"
-endfunction
 
-" Daily notes text width
-au BufRead,BufNewFile notes.txt
-      \ setlocal textwidth=80
+" Vimwiki Configuration
+au Filetype vimwiki
+      \ setlocal wrap linebreak nolist
 
-au BufWritePost *.notes.md
-      \ call CompileCurrentFileToHTML()
+"" Vimwiki Templates
+au BufNewFile ~/*/diary/*.txt
+      \ call append(0,[
+      \ "= " . split(expand('%:r'),'/')[-1] . "=", "",
+      \ "= MEETINGS =",  "",
+      \ "= NOTES =", "",
+      \ "<++>"])
 
-" Automatically compile rmarkdown
-au Filetype rmd
-      \ map <leader>co :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+au BufNewFile ~/*/meeting/*.txt
+      \ call append(0,[
+      \ "= <++> =", "",
+      \ "- ATTENDEES: <++>", "",
+      \ "- DATE: <++>", 
+      \ "- TIME: <++>", 
+      \ "----", "",
+      \ "= NOTES =", "",
+      \ "<++>"])
+
+au BufNewFile ~/*/project/*.txt
+      \ call append(0,[
+      \ "= <++> =", "",
+      \ "- STAKEHOLDERS: <++>",
+      \ "- TICKET: <++>",
+      \ "- GIT: <++>",
+      \ "----", "",
+      \ "= NOTES =", "",
+      \ "<++>"])
+
+" Limelight integration into Goyo
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
+
