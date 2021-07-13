@@ -78,3 +78,7 @@ let g:limelight_conceal_ctermfg = 240
 let g:goyo_width=100
 let g:goyo_margin_top = 10
 let g:goyo_margin_bottom = 10
+
+"" calendar.vim
+" integrate calendar.vim with vimiki diary
+autocmd FileType calendar nmap <buffer> <CR> :<C-u>call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>

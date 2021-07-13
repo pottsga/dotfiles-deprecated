@@ -40,3 +40,6 @@ nnoremap <leader>wp :call GetFilenameFromUserAndCreateFile("p")<CR>
 
 " Open todo file in vimwiki
 nnoremap <leader>ot :execute 'e ' . GetVimwikiFilepath() . "/todo.txt"<CR>
+
+" Calendar widget
+nnoremap <leader>cal :Calendar<CR>

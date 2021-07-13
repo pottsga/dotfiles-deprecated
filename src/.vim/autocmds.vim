@@ -5,31 +5,21 @@ au Filetype vimwiki
 
 "" Vimwiki Templates
 au BufNewFile ~/*/diary/*.txt
-      \ call append(0,[
-      \ "= " . split(expand('%:r'),'/')[-1] . "=", "",
-      \ "= MEETINGS =",  "",
-      \ "= NOTES =", "",
-      \ "<++>"])
+      \ let template = GetVimwikiTemplate("diary")
+      \ call append(0, template)
+      " \ call append(0,[
+      " \ "= " . split(expand('%:r'),'/')[-1] . "=", "",
+      " \ "= MEETINGS =",  "",
+      " \ "= NOTES =", "",
+      " \ "<++>"])
 
 au BufNewFile ~/*/meeting/*.txt
-      \ call append(0,[
-      \ "= <++> =", "",
-      \ "- ATTENDEES: <++>", "",
-      \ "- DATE: <++>", 
-      \ "- TIME: <++>", 
-      \ "----", "",
-      \ "= NOTES =", "",
-      \ "<++>"])
+      \ let template = GetVimwikiTemplate("meeting")
+      \ call append(0, template)
 
 au BufNewFile ~/*/project/*.txt
-      \ call append(0,[
-      \ "= <++> =", "",
-      \ "- STAKEHOLDERS: <++>",
-      \ "- TICKET: <++>",
-      \ "- GIT: <++>",
-      \ "----", "",
-      \ "= NOTES =", "",
-      \ "<++>"])
+      \ let template = GetVimwikiTemplate("project")
+      \ call append(0, template)
 
 " Limelight integration into Goyo
 " autocmd! User GoyoEnter Limelight
