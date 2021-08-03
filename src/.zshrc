@@ -33,3 +33,13 @@ alias cp="cp -v"
 alias rm="rm -v"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fix a python virtual environment issue per https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
+
+# Allow the root user access to the currently running xwindows server.
+#
+# https://pottsga.com/posts/02-03-2021/cheatsheet.html
+xhost +local:

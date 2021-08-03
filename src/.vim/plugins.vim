@@ -24,6 +24,11 @@ Plug 'pottsga/vim-jinja' " Jinja2 syntax
 Plug 'JulesWang/css.vim' " Modern css syntax
 Plug 'vim-python/python-syntax' " Python syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" For COC, the following are needed. Install via :CocInstall xxx
+"   - coc-pyright # Python
+"   - coc-html
+"   - coc-css
+"   - coc-tsserver
 
 call plug#end()
 
@@ -57,8 +62,26 @@ let g:python_highlight_all = 1
 "" CtrlP
 set wildignore+=*/tmp*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/env/*
 
-"" COC
-let g:coc_node_path = '/usr/local/bin/node'
+" "" COC
+" let g:coc_node_path = '/usr/local/bin/node'
+" " Use <c-space> to trigger completion.
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
+" " Remap <C-f> and <C-b> for scroll float windows/popups.
+" if has('nvim-0.4.0') || has('patch-8.2.0750')
+"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" endif
+" " Fix python issue a la https://github.com/neoclide/coc-python/issues/40
+" set pyxversion=3
+
 
 "" Vimwiki
 let g:vimwiki_list = [{

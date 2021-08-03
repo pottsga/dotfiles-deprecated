@@ -180,7 +180,6 @@ function! GetVimwikiTemplate(template_name)
           \ "= MEETINGS =",  "",
           \ "= NOTES =", "",
           \ "<++>"]
-
     return diary
   elseif a:template_name == "meeting" || a:template_name == "m"
     let meeting = [
