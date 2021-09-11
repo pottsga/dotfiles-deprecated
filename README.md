@@ -11,3 +11,5 @@ These dotfiles utilize `GNU stow` to install dotfiles into the home directory.
 1. Clone repository
 2. `cd` into dotfiles
 3. Run `./install` script
+
+TEST
