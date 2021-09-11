@@ -123,7 +123,7 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
   elseif a:type == "meeting" || a:type == "m"
     let meeting_title = GetUserInputAndSanitizeForVimwiki("Meeting title? ")
     let custom_date_time = GetUserInputAndSanitizeForVimwiki("Override current date/time? (y/n) ")
-    let time = strftime('%I:%M %p')
+    let time = toupper(strftime('%I:%M %p'))
     if custom_date_time == "Y"
       let date = GetUserInputAndSanitizeForVimwiki("Date (YYYY-MM-DD-DAY): ")
       let time = GetUserInputAndSanitizeForVimwiki("Time (HH:MM AM/PM): ")
@@ -152,7 +152,7 @@ endfunction
 "   base_filepath (str): the base place on the filesystem to put the file
 "     generated per the template.
 function! GenerateVimwikiTemplateAndWriteFile(type, base_filepath)
-  let date = strftime('%Y-%m-%d-%a')
+  let date = toupper(strftime('%Y-%m-%d-%a'))
 
   let result = GenerateVimwikiTemplateAndFilename(a:type, date)
   let template = result[0]
