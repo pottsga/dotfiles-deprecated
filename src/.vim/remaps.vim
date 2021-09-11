@@ -20,7 +20,7 @@ nnoremap <leader>oc :Commits<CR>
 " Date
 nnoremap <leader>d :put=strftime('%a-%Y-%m-%d')<CR>
 
-nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("d", vimwiki_filepath . "/diary/")<CR>
+nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("d", vimwiki_filepath . "/daily/")<CR>
 nnoremap <silent> <leader>wm :call GenerateVimwikiTemplateAndWriteFile("m", vimwiki_filepath . "/meeting/")<CR>
 nnoremap <silent> <leader>wp :call GenerateVimwikiTemplateAndWriteFile("p", vimwiki_filepath . "/project/")<CR>
 nnoremap <silent> <leader>wt :call GenerateVimwikiTemplateAndWriteFile("t", vimwiki_filepath . "/task/")<CR>
