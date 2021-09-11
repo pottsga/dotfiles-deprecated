@@ -204,7 +204,20 @@ function! CalendarAction(base_filepath, day, month, year, is_monday, is_tuesday,
     let day_of_week = 'SUN'
   endif
 
-  let date = a:year . '-' . a:month . '-' . a:day . '-' . day_of_week
+  let padded_month = a:month
+  let padded_day = a:day
+
+  " Pad the month if it's less than 10
+  if a:month < 10
+    let padded_month = "0" . a:month 
+  endif
+
+  " Pad the day if it's less than 10
+  if a:day < 10
+    let padded_day = "0" . a:day
+  endif
+
+  let date = a:year . '-' . padded_month . '-' . padded_day . '-' . day_of_week
 
   let result = GenerateVimwikiTemplateAndFilename("d", date)
   let template = result[0]
