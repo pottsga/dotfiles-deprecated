@@ -12,7 +12,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-surround' " Vim surround
 Plug 'vimwiki/vimwiki' " Vimwiki 
 Plug 'itchyny/calendar.vim' "calendar
-Plug 'jremmen/vim-ripgrep' "vim-ripgrep (tags, searching)
+Plug 'jremmen/vim-ripgrep' "vim-ripgrep (tags, searching) ... IMPORTANT: This requires rg to be installed
 
 
 Plug 'elixir-editors/vim-elixir' " Elixir
