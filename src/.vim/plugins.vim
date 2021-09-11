@@ -11,11 +11,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'tpope/vim-surround' " Vim surround
 Plug 'vimwiki/vimwiki' " Vimwiki 
-Plug 'junegunn/goyo.vim' "Goyo
-Plug 'junegunn/limelight.vim' "Limelight
-Plug 'dhruvasagar/vim-dotoo' "vim-dotoo
 Plug 'itchyny/calendar.vim' "calendar
 
+Plug 'elixir-editors/vim-elixir' " Elixir
 Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
@@ -62,46 +60,19 @@ let g:python_highlight_all = 1
 "" CtrlP
 set wildignore+=*/tmp*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/env/*
 
-" "" COC
-" let g:coc_node_path = '/usr/local/bin/node'
-" " Use <c-space> to trigger completion.
-" if has('nvim')
-"   inoremap <silent><expr> <c-space> coc#refresh()
-" else
-"   inoremap <silent><expr> <c-@> coc#refresh()
-" endif
-" " Remap <C-f> and <C-b> for scroll float windows/popups.
-" if has('nvim-0.4.0') || has('patch-8.2.0750')
-"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-" endif
-" " Fix python issue a la https://github.com/neoclide/coc-python/issues/40
-" set pyxversion=3
-
-
 "" Vimwiki
+let g:vimwiki_filepath = "/Users/potts_g/iCloud/Notes" " The file path to your personal vim wiki
 let g:vimwiki_list = [{
-  \ 'path': GetVimwikiFilepath(),
-  \ 'syntax': 'default',
-  \ 'ext': '.txt',
+  \ 'path': vimwiki_filepath,
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md',
   \ 'nested_syntaxes': {'python': 'python', 'html': 'html', 'css': 'css', 'js': 'js', 'sql': 'sql', 'bash': 'sh'}
   \ }]
 let g:vimwiki_url_maxsave=0
+let g:vimwiki_folding = 'syntax'
 
-"" Limelight
-""" Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
+au Filetype vimwiki
+      \ setlocal wrap linebreak nolist foldmethod=syntax
 
-"" Goyo
-let g:goyo_width=100
-let g:goyo_margin_top = 10
-let g:goyo_margin_bottom = 10
-
-"" calendar.vim
-" integrate calendar.vim with vimiki diary
-autocmd FileType calendar nmap <buffer> <CR> :<C-u>call vimwiki#diary#calendar_action(b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().week(), "V")<CR>
+" Calendar.vim -> vimwiki integration
+autocmd FileType calendar nmap <silent> <buffer> <CR> :<C-u>call CalendarAction(vimwiki_filepath . "/diary/", b:calendar.day().get_day(), b:calendar.day().get_month(), b:calendar.day().get_year(), b:calendar.day().is_monday(), b:calendar.day().is_tuesday(), b:calendar.day().is_wednesday(), b:calendar.day().is_thursday(), b:calendar.day().is_friday(), b:calendar.day().is_saturday(), b:calendar.day().is_sunday())<CR>

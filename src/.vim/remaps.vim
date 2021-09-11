@@ -9,9 +9,6 @@ noremap <silent> j gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
 
-" Open goyo with leader+gy
-nnoremap <leader>gy :Goyo<CR>
-
 " NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>
 
@@ -20,16 +17,13 @@ nnoremap <leader>of :Files<CR>
 nnoremap <leader>ob :Buffers<CR>
 nnoremap <leader>oc :Commits<CR>
 
-" Limelight
-nnoremap <leader>l :Limelight<CR>
-inoremap <leader>l :Limelight<CR>
-
 " Date
-nnoremap <leader>d :put=strftime('%Y-%m-%d')<CR>
+nnoremap <leader>d :put=strftime('%a-%Y-%m-%d')<CR>
 
-" Write meeting and project files to vimwiki with nice interface
-nnoremap <leader>wm :call GetFilenameFromUserAndCreateFile("m")<CR>
-nnoremap <leader>wp :call GetFilenameFromUserAndCreateFile("p")<CR>
+nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("d", vimwiki_filepath . "/diary/")<CR>
+nnoremap <silent> <leader>wm :call GenerateVimwikiTemplateAndWriteFile("m", vimwiki_filepath . "/meeting/")<CR>
+nnoremap <silent> <leader>wp :call GenerateVimwikiTemplateAndWriteFile("p", vimwiki_filepath . "/project/")<CR>
+nnoremap <silent> <leader>wt :call GenerateVimwikiTemplateAndWriteFile("t", vimwiki_filepath . "/task/")<CR>
 
 " Calendar widget
 nnoremap <leader>cal :Calendar<CR>

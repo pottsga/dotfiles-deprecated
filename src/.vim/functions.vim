@@ -1,21 +1,3 @@
-" Custom functions
-
-" Show the syntax stack by typing <leader>sp
-nmap <leader>sp :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" Show the syntax groups by typing <leader>sg
-nmap <leader>sg :call <SID>SynGroup()<CR>
-function! <SID>SynGroup()
-    let l:s = synID(line('.'), col('.'), 1)
-    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
-
 " COC
 function! FloatScroll(forward) abort
   let float = coc#util#get_float()
@@ -46,160 +28,188 @@ function! FloatScroll(forward) abort
   return ''
 endfunction
 
-function CompileCurrentFileToHTML()
-  " Create an HTML subdirectory and compile the current file to HTML
-  " within that subdirectory called html/.
-  echo "Compiled '" . expand("%:t") . "' to 'html/" . expand("%:t") . ".html'"
-  execute "silent ! mkdir -p html"
-  execute "silent ! pandoc --standalone -f gfm -t html % > html/%.html"
-endfunction
-
-function! GetVimwikiFilepath() 
-  " Get the base vimwiki filepath. This centralizes this string so as to be
-  " able to be used in scripts and other places. If this needs changed, this
-  " is the place to do that.
-  return "/Users/potts_g/iCloud/Notes"
-endfunction
-
-function! GetDateFromUserForMeeting()
-  " Get the user's input for a date and make sure that the date input matches
-  " the expected format of YYYY-MM-DD
-
-  " The current date as of when the script was ran.
-  let current_date = toupper(strftime("%Y-%m-%d"))
-  let meeting_date = current_date
-  " Is the current date the correct date for the meeting? If so, let's
-  " just use that.
-  let current_date_correct = toupper(input("Is the meeting today, " . current_date . "? (y/n) "))
-
-  " Else, if the current date is not correct, we need to get that
-  " information from the user.
-  if current_date_correct == "N"
-    " Is the date format correct?
-    let format_correct = "N"
-    " While the format is incorrect, keep asking the user for input.
-    while format_correct == "N"
-      " Get the user's input on what the date should be.
-      let user_meeting_date = toupper(input("What is the date? (YYYY-MM-DD): "))
-
-      " If the user's input matches the format expected
-      if user_meeting_date =~ '^\d\d\d\d-\d\d-\d\d$'
-        let format_correct = "Y"
-        let meeting_date = strptime("%Y-%m-%d", user_meeting_date)
+" Write the file to the filesystem. If the ask parameter is 1, then ask the
+" user whether or not they'd like to write the file. Else, just write it.
+"
+" Args:
+"   template (str): The template string to insert into the file
+"   filepath (str): The full file path of the file
+"   ask (str): 1 or 0. If 1, then ask the user if they are sure they want to write
+function! WriteFile(template, filepath, ask)
+  if !filereadable(a:filepath)
+    if a:ask == 1
+      let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
+      if sure == "Y"
+        call writefile(a:template, a:filepath)
+        echom " Wrote file..."
+        " Tell vim to edit the file
+        execute "e " . a:filepath
       else
-        echo " ERROR: Incorrect format"
+        echom " Cancelled..."
       endif
-    endwhile
-
-    return meeting_date
-  endif
-endfunction
-
-function! GetFilenameFromUserAndCreateFile(type)
-  " Get the file name form the user that will be used to create the file in
-  " the vimwiki folder structure. This is called either by <leader>m for
-  " meetings or <leader>p for projects. This script also creates the file in
-  " the file structure.
-  "
-  " @param type: str; either m or p for meeting or project
-
-  if a:type == "m" " If this is a meeting
-    echo "Create a new meeting file in your vimwiki wiki\n"
-    let title=substitute(toupper(input("Meeting Title: ")), " ", "-", "g")
-
-    " Ask the user if the meeting has a specific time or not
-    let has_time = toupper(input("Does the meeting have a specific date and time? (y/n) "))
-
-    " If it does have a specific time, we want to get that information from
-    " the user. When is the meeting, and on what day?
-    if has_time == "Y"
-      let format_correct = "N" " set the format to incorrect by default since we haven't yet checked it.
-
-      while format_correct == "N"
-        " Get the user's input for the date and time to be used
-        let user_input_datetime = toupper(input("Enter the time in YYYY-MM-DD-HHMM[AM|PM] format: "))
-        
-        " Make sure the user's input matches the expected format.
-        if user_input_datetime =~ '\v^\d{4}-\d{2}-\d{2}-\d{3,4}(AM|PM)$'
-          let format_correct = "Y"
-          let prepend_datetime=user_input_datetime
-          " Set the prepend_datetime to whatever the user input since that is
-          " of a valid format. Also, set format_correct equal to yes so we
-          " break the loop.
-        else
-          echo " ERROR: Incorrect format."
-          " Loop
-        endif
-      endwhile
     else
-      " The date/time is right now
-      let prepend_datetime=toupper(strftime("%Y-%m-%d-%I%M%p"))
-      " Just let the user know what's going on.
-      echo "\rUsing the currend date and time value of: " . prepend_datetime
+      call writefile(a:template, a:filepath)
+      " tell vim to edit the file
+      execute "e " . a:filepath
     endif
-
-    " Set the subdirectory to /meeting
-    let subdirectory="/meeting/"
-    let filename=prepend_datetime . "_" . title . ".txt"
-  elseif a:type == "p" " If this is a project
-    let title=substitute(toupper(input("Project Name: ")), " ", "-", "g")
-    " Set the subdirectory to project
-    let subdirectory="/project/"
-    let filename=title . ".txt"
-  endif
-
-  " The base directory of the vimwiki wiki
-  let base_wiki_filepath = GetVimwikiFilepath()
-  " Concat the string together to provide a fully qualified filepath
-  let fp = base_wiki_filepath . subdirectory . filename
-  " Touch the file ... aka write the file to the system
-
-  " Make sure the user actually wants to write the file as it was created
-  let sure = toupper(input("Are you sure you want to create " . fp . "? (y/n) "))
-  echom "\r"
-  if sure == "Y"
-    " call system("touch " . fp)
-
-    let template=GetVimwikiTemplate(a:type)
-
-    call writefile(template, fp, "a")
-
-    echom "Wrote " . fp
   else
-    echom "Cancelled..."
+    " File already exists on the disk
+    " tell vim to edit the file
+    execute "e " . a:filepath
   endif
 endfunction
 
-function! GetVimwikiTemplate(template_name)
-  " Define what should be inserted into the file automatically
-  " let current_date = strftime("%Y-%m-%d")
+" Get user input from user and convert it all to uppercase and replace any
+" spaces with a dash.
+"
+" Args:
+"   prompt (str): The prompt to show the user
+"
+" Returns:
+"   The sanitized user input 
+function! GetUserInputAndSanitizeForVimwiki(prompt)
+  return substitute(toupper(input(a:prompt)), " ", "-", "g")
+endfunction
 
-  if a:template_name == "diary"
-    let diary = [
-          \ "= " . split(expand('%:r'),'/')[-1] . "=", "",
-          \ "= MEETINGS =",  "",
-          \ "= NOTES =", "",
-          \ "<++>"]
-    return diary
-  elseif a:template_name == "meeting" || a:template_name == "m"
-    let meeting = [
-          \ "= <++> =", "",
-          \ "- ATTENDEES: <++>", "",
-          \ "- DATE: <++>", 
-          \ "- TIME: <++>", 
-          \ "----", "",
-          \ "= NOTES =", "",
-          \ "<++>"]
-    return meeting
-  elseif a:template_name == "project" || a:template_name == "p"
-    let project = [
-          \ "= <++> =", "",
-          \ "- STAKEHOLDERS: <++>",
-          \ "- TICKET: <++>",
-          \ "- GIT: <++>",
-          \ "----", "",
-          \ "= NOTES =", "",
-          \ "<++>"]
-    return project
+" Generate the vimwiki template string based on the type passed in. And return
+" it.
+"
+" Args:
+"   type (str): p, t, d, or m. The type of the vimwiki file. Used to
+"     generate template
+"   date (str): The date for the file
+"
+" Returns:
+"   The vimwiki template string
+function! GenerateVimwikiTemplateAndFilename(type, date)
+  let date = a:date
+  let file_extension = "md"
+  if a:type == "daily" || a:type == "d"
+    let template = [
+      \ "# " . date, "",
+      \ "# NOTES", "",
+      \ "<++>"
+      \ ]
+    let filename = date . "." . file_extension
+    return [template, filename]
+  elseif a:type == "project" || a:type == "p"
+    let project_name = GetUserInputAndSanitizeForVimwiki("Project name? ")
+    let template = [
+      \ "# PROJECT: " . project_name, "",
+      \ "- STAKEHOLDERS: <++>",
+      \ "- DATE: " . date,
+      \ "- GIT: <++>",
+      \ "- TICKET: <++>",
+      \ "---", "",
+      \ "# NOTES", "",
+      \ "<++>"
+      \ ]
+
+    let filename = date . "_" . project_name . "." . file_extension
+    return [template, filename]
+  elseif a:type == "task" || a:type == "t"
+    let task_name = GetUserInputAndSanitizeForVimwiki("Task name? ")
+    let template = [
+      \ "# TASK: " . task_name, "",
+      \ "- STAKEHOLDERS: <++>",
+      \ "- DATE: " . date,
+      \ "- TICKET: <++>",
+      \ "---", "",
+      \ "# NOTES", "",
+      \ "<++>"
+      \ ]
+    let filename = date . "_" . task_name . "." . file_extension
+    return [template, filename]
+  elseif a:type == "meeting" || a:type == "m"
+    let meeting_title = GetUserInputAndSanitizeForVimwiki("Meeting title? ")
+    let custom_date_time = GetUserInputAndSanitizeForVimwiki("Override current date/time? (y/n) ")
+    let time = strftime('%I:%M %p')
+    if custom_date_time == "Y"
+      let date = GetUserInputAndSanitizeForVimwiki("Date (YYYY-MM-DD-DAY): ")
+      let time = GetUserInputAndSanitizeForVimwiki("Time (HH:MM AM/PM): ")
+    endif
+    let template = [
+      \ "# MEETING: " . meeting_title, "",
+      \ "- DATE: " . date,
+      \ "- TIME: " . time,
+      \ "- ATTENDEES: <++>",
+      \ "---", "",
+      \ "# NOTES", "",
+      \ "<++>"
+      \ ]
+
+    let filename = date . "-" . time . "_" . meeting_title . "." . file_extension
+    return [template, filename]
   endif
+endfunction
+
+" On passing of a template type, enerate the Vimwiki template for that type
+" and write it to the filesystem based on the base_filepath.
+"
+" Args:
+"   type (str): p, t, d, or m. The type of the vimwiki file. Used to
+"     generate template
+"   base_filepath (str): the base place on the filesystem to put the file
+"     generated per the template.
+function! GenerateVimwikiTemplateAndWriteFile(type, base_filepath)
+  let date = strftime('%Y-%m-%d-%a')
+
+  let result = GenerateVimwikiTemplateAndFilename(a:type, date)
+  let template = result[0]
+  let filename = result[1]
+
+  if a:type == "daily" || a:type == "d"
+    let filepath = a:base_filepath . filename
+    call WriteFile(template, filepath, 0)
+  elseif a:type == "project" || a:type == "p"
+    let filepath = a:base_filepath . filename
+
+    call WriteFile(template, filepath, 1)
+  elseif a:type == "task" || a:type == "t"
+    let filepath = a:base_filepath . filename
+
+    call WriteFile(template, filepath, 1)
+  elseif a:type == "meeting" || a:type == "m"
+    let filepath = a:base_filepath . filename
+
+    call WriteFile(template, filepath, 1)
+  endif
+endfunction
+
+" Custom version of the vimwiki#diary#calendar_action function that inserts a
+" diary file through a calendar.vim integration.
+" 
+" Args:
+"   base_filepath (str): the base place on the filesystem to put the file
+"     generated per the template.
+"   day (str): The day of the new file
+"   month (str): The month of the new file
+"   year (str): The year of the new file
+"   is_Xday (int): 1 if the day of the week is that day of the week, else 0.
+function! CalendarAction(base_filepath, day, month, year, is_monday, is_tuesday, is_wednesday, is_thursday, is_friday, is_saturday, is_sunday)
+  let day_of_week = ''
+  if a:is_monday == 1
+    let day_of_week = 'MON'
+  elseif a:is_tuesday == 1
+    let day_of_week = 'TUE'
+  elseif a:is_wednesday == 1
+    let day_of_week = 'WED'
+  elseif a:is_thursday == 1
+    let day_of_week = 'THU'
+  elseif a:is_friday == 1
+    let day_of_week = 'FRI'
+  elseif a:is_saturday == 1
+    let day_of_week = 'SAT'
+  elseif a:is_sunday == 1
+    let day_of_week = 'SUN'
+  endif
+
+  let date = a:year . '-' . a:month . '-' . a:day . '-' . day_of_week
+
+  let result = GenerateVimwikiTemplateAndFilename("d", date)
+  let template = result[0]
+  let filename = result[1]
+
+  let filepath = a:base_filepath . filename
+  call WriteFile(template, filepath, 0)
 endfunction
