@@ -36,6 +36,8 @@ endfunction
 "   filepath (str): The full file path of the file
 "   ask (str): 1 or 0. If 1, then ask the user if they are sure they want to write
 function! WriteFile(template, filepath, ask)
+  " Get rid of any spaces and replace them with -s. Also convert everything to
+  " uppercase
   if !filereadable(a:filepath)
     if a:ask == 1
       let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
@@ -90,7 +92,8 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "# NOTES", "",
       \ "<++>"
       \ ]
-    let filename = date . "." . file_extension
+    let filename = date
+    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
     return [template, filename]
   elseif a:type == "project" || a:type == "p"
     let project_name = GetUserInputAndSanitizeForVimwiki("Project name? ")
@@ -98,14 +101,17 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "# PROJECT: " . project_name, "",
       \ "- STAKEHOLDERS: <++>",
       \ "- DATE: " . date,
-      \ "- GIT: <++>",
+      \ "- DUE: <++>",
       \ "- TICKET: <++>",
+      \ "- GIT: <++>",
+      \ "- TAGS: <++>",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
       \ ]
 
-    let filename = date . "_" . project_name . "." . file_extension
+    let filename = date . "_" . project_name
+    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
     return [template, filename]
   elseif a:type == "task" || a:type == "t"
     let task_name = GetUserInputAndSanitizeForVimwiki("Task name? ")
@@ -113,12 +119,15 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "# TASK: " . task_name, "",
       \ "- STAKEHOLDERS: <++>",
       \ "- DATE: " . date,
+      \ "- DUE: <++>",
       \ "- TICKET: <++>",
+      \ "- TAGS: <++>",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
       \ ]
-    let filename = date . "_" . task_name . "." . file_extension
+    let filename = date . "_" . task_name
+    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
     return [template, filename]
   elseif a:type == "meeting" || a:type == "m"
     let meeting_title = GetUserInputAndSanitizeForVimwiki("Meeting title? ")
@@ -133,12 +142,14 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "- DATE: " . date,
       \ "- TIME: " . time,
       \ "- ATTENDEES: <++>",
+      \ "- TAGS: <++>",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
       \ ]
 
-    let filename = date . "-" . time . "_" . meeting_title . "." . file_extension
+    let filename = date . "-" . time . "_" . meeting_title
+    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
     return [template, filename]
   endif
 endfunction
