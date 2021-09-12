@@ -9,8 +9,6 @@ noremap <silent> j gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
 
-
-
 " Insert Current Date
 nnoremap <leader>d :put=strftime('%a-%Y-%m-%d')<CR>
 

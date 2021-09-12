@@ -30,7 +30,6 @@ endif
 
 "" Statusline
 set laststatus=2 " Show the status line at the bottom
-
 set statusline=
 set statusline+=\ %f
 set statusline+=\ %m
@@ -39,7 +38,7 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}]
 set statusline+=\ %l:%c
 
-
+" Allow vim to vhange cursors in different modes
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
