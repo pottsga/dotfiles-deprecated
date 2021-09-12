@@ -20,7 +20,6 @@ set signcolumn=yes " always show the signcolumn, otherwise text can shift
 set cmdheight=2 " more command height for displaying messages
 set clipboard=unnamed
 
-
 source ~/.vim/functions.vim " custom functions
 source ~/.vim/plugins.vim " plugin installation/configuration
 source ~/.vim/ui.vim " ui configuration
