@@ -1,5 +1,6 @@
 "" Vimwiki
 let g:vimwiki_filepath = "/Users/potts_g/iCloud/Notes" " The file path to your personal vim wiki
+
 let g:vimwiki_list = [{
   \ 'path': vimwiki_filepath,
   \ 'syntax': 'markdown',
@@ -10,7 +11,7 @@ let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding = 'syntax'
 
 au Filetype vimwiki
-      \ setlocal wrap linebreak nolist foldmethod=syntax
+      \ setlocal wrap linebreak nolist foldmethod=syntax tw=100 colorcolumn=100
 
 " Write the file to the filesystem. If the ask parameter is 1, then ask the
 " user whether or not they'd like to write the file. Else, just write it.
@@ -85,10 +86,9 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "# PROJECT: " . project_name, "",
       \ "- STAKEHOLDERS: <++>",
       \ "- DATE: " . date,
-      \ "- DUE: <++>",
       \ "- TICKET: <++>",
       \ "- GIT: <++>",
-      \ "- TAGS: <++>",
+      \ "- TAGS: :todo:",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
@@ -103,9 +103,8 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "# TASK: " . task_name, "",
       \ "- STAKEHOLDERS: <++>",
       \ "- DATE: " . date,
-      \ "- DUE: <++>",
       \ "- TICKET: <++>",
-      \ "- TAGS: <++>",
+      \ "- TAGS: :todo:",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
@@ -175,3 +174,10 @@ nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("
 nnoremap <silent> <leader>wm :call GenerateVimwikiTemplateAndWriteFile("m", vimwiki_filepath . "/meeting/")<CR>
 nnoremap <silent> <leader>wp :call GenerateVimwikiTemplateAndWriteFile("p", vimwiki_filepath . "/project/")<CR>
 nnoremap <silent> <leader>wt :call GenerateVimwikiTemplateAndWriteFile("t", vimwiki_filepath . "/task/")<CR>
+
+" Remap to insert current time and start a list for the daily notes
+nnoremap <leader>wit I<Esc>:put =strftime('%I:%M %p: ')<CR>kddA<CR>- 
+inoremap <leader>wit I<Esc>:put =strftime('%I:%M %p: ')<CR>kddA<CR>- 
+
+" Search for any note with the :todo: flag in it.
+nnoremap <leader>dt :Rg :todo:<CR>
