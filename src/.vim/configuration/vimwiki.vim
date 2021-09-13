@@ -170,6 +170,8 @@ function! GenerateVimwikiTemplateAndWriteFile(type, base_filepath)
   endif
 endfunction
 
+" Map some helper keys to create daily, meeting, project, and task notes in
+" their correct subdirectories according to vimwiki_filepath
 nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("d", vimwiki_filepath . "/daily/")<CR>
 nnoremap <silent> <leader>wm :call GenerateVimwikiTemplateAndWriteFile("m", vimwiki_filepath . "/meeting/")<CR>
 nnoremap <silent> <leader>wp :call GenerateVimwikiTemplateAndWriteFile("p", vimwiki_filepath . "/project/")<CR>
@@ -181,3 +183,7 @@ inoremap <leader>wit I<Esc>:put =strftime('%I:%M %p: ')<CR>kddA<CR>-
 
 " Search for any note with the :todo: flag in it.
 nnoremap <leader>dt :Rg :todo:<CR>
+
+" Convert a :todo: flag to :done: and insert the time next to it
+nnoremap <leader>d ^/:todo:<CR><S-V>:s/:todo:/:done: ( /g<CR><Esc>/done: (<CR>f(li<C-r>=toupper(strftime('ON %Y-%m-%d-%a %I:%M %p'))<CR>)<Esc>:noh<CR>
+
