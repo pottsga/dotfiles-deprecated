@@ -40,3 +40,4 @@ source ~/.vim/configuration/fzf.vim
 source ~/.vim/configuration/coc.vim
 source ~/.vim/configuration/calendar.vim
 source ~/.vim/configuration/vimwiki.vim
+source ~/.vim/configuration/ripgrep.vim

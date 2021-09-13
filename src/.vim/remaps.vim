@@ -8,3 +8,8 @@ noremap <silent> k gk
 noremap <silent> j gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
+
+" Navigate up and down in the quickfix buffer a la emacs
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+map <C-c> :ccl<CR>

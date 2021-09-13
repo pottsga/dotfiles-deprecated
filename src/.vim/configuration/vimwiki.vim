@@ -8,10 +8,11 @@ let g:vimwiki_list = [{
   \ 'nested_syntaxes': {'python': 'python', 'html': 'html', 'css': 'css', 'js': 'js', 'sql': 'sql', 'bash': 'sh'}
   \ }]
 let g:vimwiki_url_maxsave=0
-let g:vimwiki_folding = 'syntax'
+" let g:vimwiki_folding = 'syntax'
+let g:vimwiki_folding = 'expr'
 
 au Filetype vimwiki
-      \ setlocal wrap linebreak nolist foldmethod=syntax tw=100 colorcolumn=101
+      \ setlocal wrap linebreak nolist tw=100 colorcolumn=101
 
 " Write the file to the filesystem. If the ask parameter is 1, then ask the
 " user whether or not they'd like to write the file. Else, just write it.
@@ -88,7 +89,8 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "- DATE: " . date,
       \ "- TICKET: <++>",
       \ "- GIT: <++>",
-      \ "- TAGS: :todo:",
+      \ "- TAGS:", "",
+      \ "  - :todo:", "",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
@@ -104,7 +106,8 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "- STAKEHOLDERS: <++>",
       \ "- DATE: " . date,
       \ "- TICKET: <++>",
-      \ "- TAGS: :todo:",
+      \ "- TAGS:", "",
+      \ "  - :todo:", "",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
@@ -125,7 +128,7 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "- DATE: " . date,
       \ "- TIME: " . time,
       \ "- ATTENDEES: <++>",
-      \ "- TAGS: <++>",
+      \ "- TAGS: <++>", "",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
