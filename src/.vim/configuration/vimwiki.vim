@@ -11,7 +11,7 @@ let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding = 'syntax'
 
 au Filetype vimwiki
-      \ setlocal wrap linebreak nolist foldmethod=syntax tw=100 colorcolumn=100
+      \ setlocal wrap linebreak nolist foldmethod=syntax tw=100 colorcolumn=101
 
 " Write the file to the filesystem. If the ask parameter is 1, then ask the
 " user whether or not they'd like to write the file. Else, just write it.
