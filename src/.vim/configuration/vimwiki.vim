@@ -1,6 +1,10 @@
 "" Vimwiki
 let g:vimwiki_filepath = "/Users/potts_g/iCloud/Notes" " The file path to your personal vim wiki
 
+let g:date_format = '%Y%m%d%a' " what format should the dates be in?
+let g:time_format = '%I%M%p' " what format should all the time be in?
+let g:uid_separator = '-' " the character to use to separate the uid from the ID
+
 let g:vimwiki_list = [{
   \ 'path': vimwiki_filepath,
   \ 'syntax': 'markdown',
@@ -12,7 +16,10 @@ let g:vimwiki_url_maxsave=0
 let g:vimwiki_folding = 'expr'
 
 au Filetype vimwiki
-      \ setlocal wrap linebreak nolist tw=100 colorcolumn=101
+      \ setlocal nowrap linebreak nolist tw=100 colorcolumn=101 foldlevel=5
+
+" Open links with t in a split
+autocmd FileType vimwiki nnoremap t :VimwikiVSplitLink<CR>
 
 " Write the file to the filesystem. If the ask parameter is 1, then ask the
 " user whether or not they'd like to write the file. Else, just write it.
@@ -22,29 +29,25 @@ au Filetype vimwiki
 "   filepath (str): The full file path of the file
 "   ask (str): 1 or 0. If 1, then ask the user if they are sure they want to write
 function! WriteFile(template, filepath, ask)
-  " Get rid of any spaces and replace them with -s. Also convert everything to
-  " uppercase
-  if !filereadable(a:filepath)
-    if a:ask == 1
-      let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
-      if sure == "Y"
-        call writefile(a:template, a:filepath)
-        echom " Wrote file..."
-        " Tell vim to edit the file
-        execute "e " . a:filepath
-      else
-        echom " Cancelled..."
-      endif
-    else
-      call writefile(a:template, a:filepath)
-      " tell vim to edit the file
-      execute "e " . a:filepath
+  " If we should ask the user, ask them if they really want to write the file.
+  if a:ask == 1
+    let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
+    if sure != "Y"
+      " Write out cancelled and return
+      echom " Cancelled..."
+      return
     endif
-  else
-    " File already exists on the disk
-    " tell vim to edit the file
-    execute "e " . a:filepath
   endif
+
+  " If the file does not exist on the disk
+  if !filereadable(a:filepath)
+    " Write the file to the disk
+    call writefile(a:template, a:filepath)
+    echom " Wrote file..."
+  endif
+
+  " Open the file
+  execute "e " . a:filepath
 endfunction
 
 " Get user input from user and convert it all to uppercase and replace any
@@ -72,6 +75,10 @@ endfunction
 function! GenerateVimwikiTemplateAndFilename(type, date)
   let date = a:date
   let file_extension = "md"
+
+  let template = ''
+  let filename = ''
+
   if a:type == "daily" || a:type == "d"
     let template = [
       \ "# " . date, "",
@@ -79,65 +86,67 @@ function! GenerateVimwikiTemplateAndFilename(type, date)
       \ "<++>"
       \ ]
     let filename = date
-    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
-    return [template, filename]
   elseif a:type == "project" || a:type == "p"
     let project_name = GetUserInputAndSanitizeForVimwiki("Project name? ")
     let template = [
       \ "# PROJECT: " . project_name, "",
       \ "- STAKEHOLDERS: <++>",
-      \ "- DATE: " . date,
-      \ "- TICKET: <++>",
       \ "- GIT: <++>",
-      \ "- TAGS:", "",
-      \ "  - :todo:", "",
+      \ "- TAGS:",
+      \ "  - <++>",
       \ "---", "",
       \ "# NOTES", "",
-      \ "<++>"
+      \ "<++>", "",
+      \ "# TASKS", "",
       \ ]
 
-    let filename = date . "_" . project_name
-    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
-    return [template, filename]
-  elseif a:type == "task" || a:type == "t"
-    let task_name = GetUserInputAndSanitizeForVimwiki("Task name? ")
-    let template = [
-      \ "# TASK: " . task_name, "",
-      \ "- STAKEHOLDERS: <++>",
-      \ "- DATE: " . date,
-      \ "- TICKET: <++>",
-      \ "- TAGS:", "",
-      \ "  - :todo:", "",
-      \ "---", "",
-      \ "# NOTES", "",
-      \ "<++>"
-      \ ]
-    let filename = date . "_" . task_name
-    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
-    return [template, filename]
+    let filename = project_name
   elseif a:type == "meeting" || a:type == "m"
     let meeting_title = GetUserInputAndSanitizeForVimwiki("Meeting title? ")
     let custom_date_time = GetUserInputAndSanitizeForVimwiki("Override current date/time? (y/n) ")
-    let time = toupper(strftime('%I:%M %p'))
+    let time = toupper(strftime(g:time_format))
+
     if custom_date_time == "Y"
-      let date = GetUserInputAndSanitizeForVimwiki("Date (YYYY-MM-DD-DAY): ")
-      let time = GetUserInputAndSanitizeForVimwiki("Time (HH:MM AM/PM): ")
+      let date = GetUserInputAndSanitizeForVimwiki("Date (YYYYMMDDDAY; Ex: 20210915WED): ")
+      let time = GetUserInputAndSanitizeForVimwiki("Time (HHMM(AM/PM) Ex: 0900AM): ")
     endif
+
     let template = [
       \ "# MEETING: " . meeting_title, "",
       \ "- DATE: " . date,
       \ "- TIME: " . time,
       \ "- ATTENDEES: <++>",
-      \ "- TAGS: <++>", "",
+      \ "- TAGS:",
+      \ "  - <++>",
       \ "---", "",
       \ "# NOTES", "",
       \ "<++>"
       \ ]
 
-    let filename = date . "-" . time . "_" . meeting_title
-    let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
-    return [template, filename]
+    let filename = date . time . g:uid_separator . meeting_title
+  elseif a:type == "other" || a:type == "o"
+    let file_name = GetUserInputAndSanitizeForVimwiki("File name? ")
+    let time = toupper(strftime(g:time_format))
+
+    let template = [
+      \ "# FILE NAME: " . file_name, "",
+      \ "- DATE: " . date,
+      \ "- TIME: " . time,
+      \ "- TAGS:",
+      \ "  - <++>",
+      \ "---", "",
+      \ "<++>",
+      \ ]
+
+    let filename = file_name
+  else
+    " type was unsupported
+    return []
   endif
+
+  " let filename = substitute(toupper(filename), " ", "-", "g") . "." . file_extension
+  let filename = filename . '.' . file_extension
+  return [template, filename]
 endfunction
 
 " On passing of a template type, enerate the Vimwiki template for that type
@@ -149,28 +158,26 @@ endfunction
 "   base_filepath (str): the base place on the filesystem to put the file
 "     generated per the template.
 function! GenerateVimwikiTemplateAndWriteFile(type, base_filepath)
-  let date = toupper(strftime('%Y-%m-%d-%a'))
+  let date = toupper(strftime(g:date_format))
 
   let result = GenerateVimwikiTemplateAndFilename(a:type, date)
+  if result == []
+    echo " Unsupported type..."
+    return
+  endif
+
   let template = result[0]
   let filename = result[1]
 
+  let ask_user = 1
   if a:type == "daily" || a:type == "d"
-    let filepath = a:base_filepath . filename
-    call WriteFile(template, filepath, 0)
-  elseif a:type == "project" || a:type == "p"
-    let filepath = a:base_filepath . filename
-
-    call WriteFile(template, filepath, 1)
-  elseif a:type == "task" || a:type == "t"
-    let filepath = a:base_filepath . filename
-
-    call WriteFile(template, filepath, 1)
-  elseif a:type == "meeting" || a:type == "m"
-    let filepath = a:base_filepath . filename
-
-    call WriteFile(template, filepath, 1)
+    " If the note is a daily note, don't ask the user for input before writing
+    let ask_user = 0
   endif
+
+  " Create the filepath and write the file
+  let filepath = a:base_filepath . filename
+  call WriteFile(template, filepath, 1)
 endfunction
 
 " Map some helper keys to create daily, meeting, project, and task notes in
@@ -178,15 +185,18 @@ endfunction
 nnoremap <silent> <leader>w<leader>w :call GenerateVimwikiTemplateAndWriteFile("d", vimwiki_filepath . "/daily/")<CR>
 nnoremap <silent> <leader>wm :call GenerateVimwikiTemplateAndWriteFile("m", vimwiki_filepath . "/meeting/")<CR>
 nnoremap <silent> <leader>wp :call GenerateVimwikiTemplateAndWriteFile("p", vimwiki_filepath . "/project/")<CR>
-nnoremap <silent> <leader>wt :call GenerateVimwikiTemplateAndWriteFile("t", vimwiki_filepath . "/task/")<CR>
+nnoremap <silent> <leader>wo :call GenerateVimwikiTemplateAndWriteFile("o", vimwiki_filepath . "/other/")<CR>
 
 " Remap to insert current time and start a list for the daily notes
-nnoremap <leader>wit I<Esc>:put =strftime('%I:%M %p: ')<CR>kddA<CR>- 
-inoremap <leader>wit I<Esc>:put =strftime('%I:%M %p: ')<CR>kddA<CR>- 
+nnoremap <leader>wit I<Esc>:put =toupper(strftime(g:time_format))<CR>kddA<CR>- 
+inoremap <leader>wit I<Esc>:put =toupper(strftime(g:time_format))<CR>kddA<CR>- 
 
 " Search for any note with the :todo: flag in it.
 nnoremap <leader>dt :Rg :todo:<CR>
 
 " Convert a :todo: flag to :done: and insert the time next to it
-nnoremap <leader>d ^/:todo:<CR><S-V>:s/:todo:/:done: ( /g<CR><Esc>/done: (<CR>f(li<C-r>=toupper(strftime('ON %Y-%m-%d-%a %I:%M %p'))<CR>)<Esc>:noh<CR>
+nnoremap <leader>d ^/:todo:<CR><S-V>:s/:todo:/:done: ( /g<CR><Esc>/done: (<CR>f(li<C-r>=toupper(strftime('ON ' . g:date_format . g:time_format))<CR>)<Esc>:noh<CR>
 
+" Create a task for a project
+nnoremap <silent> <leader>wt i## TASK: <++><CR>  - TICKET: <++><CR>- :todo:<CR><CR><++><Esc>?<++><CR>nnh:noh<CR>
+inoremap <silent> <leader>wt ## TASK: <++><CR>  - TICKET: <++><CR>- :todo:<CR><CR><++><Esc>?<++><CR>nnh:noh<CR>
