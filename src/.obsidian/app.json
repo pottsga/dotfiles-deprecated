@@ -1,0 +1,16 @@
+{
+  "spellcheck": true,
+  "foldHeading": true,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "attachments",
+  "showUnsupportedFiles": true,
+  "spellcheckDictionary": [
+    "Toya",
+    "EcoBoost",
+    "DegreeWorks",
+    "SSOManager",
+    "tonneau"
+  ],
+  "vimMode": true,
+  "showFrontmatter": true
+}

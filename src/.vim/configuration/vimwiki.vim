@@ -29,18 +29,19 @@ autocmd FileType vimwiki nnoremap t :VimwikiVSplitLink<CR>
 "   filepath (str): The full file path of the file
 "   ask (str): 1 or 0. If 1, then ask the user if they are sure they want to write
 function! WriteFile(template, filepath, ask)
-  " If we should ask the user, ask them if they really want to write the file.
-  if a:ask == 1
-    let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
-    if sure != "Y"
-      " Write out cancelled and return
-      echom " Cancelled..."
-      return
-    endif
-  endif
-
+  "
   " If the file does not exist on the disk
   if !filereadable(a:filepath)
+    " If we should ask the user, ask them if they really want to write the file.
+    if a:ask == 1
+      let sure = toupper(input("Write file? " . a:filepath . " (y/n) "))
+      if sure != "Y"
+        " Write out cancelled and return
+        echom " Cancelled..."
+        return
+      endif
+    endif
+
     " Write the file to the disk
     call writefile(a:template, a:filepath)
     echom " Wrote file..."
@@ -177,7 +178,7 @@ function! GenerateVimwikiTemplateAndWriteFile(type, base_filepath)
 
   " Create the filepath and write the file
   let filepath = a:base_filepath . filename
-  call WriteFile(template, filepath, 1)
+  call WriteFile(template, filepath, ask_user)
 endfunction
 
 " Map some helper keys to create daily, meeting, project, and task notes in

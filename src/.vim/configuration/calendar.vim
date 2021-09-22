@@ -39,7 +39,7 @@ function! CalendarAction(base_filepath, day, month, year, is_monday, is_tuesday,
     let padded_day = "0" . a:day
   endif
 
-  let date = a:year . '-' . padded_month . '-' . padded_day . '-' . day_of_week
+  let date = a:year . padded_month . padded_day . day_of_week
 
   let result = GenerateVimwikiTemplateAndFilename("d", date)
   let template = result[0]
