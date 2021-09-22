@@ -39,7 +39,7 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-# Allow the root user access to the currently running xwindows server.
-#
-# https://pottsga.com/posts/02-03-2021/cheatsheet.html
-xhost +local:
+# # Allow the root user access to the currently running xwindows server.
+# #
+# # https://pottsga.com/posts/02-03-2021/cheatsheet.html
+# xhost +local:
