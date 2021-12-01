@@ -3,15 +3,18 @@ if ! [[ -d ~/.oh-my-zsh ]] then
 fi
 
 # Environment variables
-export PATH="$PATH:$HOME/drivers:$HOME/bin" # User configuration
+export PATH="$PATH:$HOME/drivers:$HOME/bin:$HOME/lib" # User configuration
+# export PATH="$PATH:$HOME/lib/instantclient_19_8/" # Instantclient
+export PATH="$PATH:$HOME/.emacs.d/bin" # Emacs executables
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
-export EDITOR='nvim'
+# export EDITOR='nvim'
+export EDITOR='emacs'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -21,18 +24,22 @@ ZSH_THEME="robbyrussell"
 plugins=(
 )
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias ssh="ssh -Y" # enable X-window forwarding by default
 alias mkdir="mkdir -pv" # create intermediate directories as needed verbosely
-alias ll="ls -GFhal"
+alias ls="ls --color"
+alias ll="ls --color-GFhal"
 alias vim="nvim"
 alias mv="mv -v" # tell me what you mean
 alias cp="cp -v"
 alias rm="rm -v"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PROMPT="%F{red}%n%f %~
+> "
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fix a python virtual environment issue per https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then

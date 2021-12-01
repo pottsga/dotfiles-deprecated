@@ -19,7 +19,7 @@ Plug 'evanleck/vim-svelte' " Svelte
 Plug 'pangloss/vim-javascript' " JavaScript Syntax
 Plug 'mxw/vim-jsx' "JSX Syntax
 Plug 'leafgarland/typescript-vim' " Typescript
-Plug 'pottsga/vim-jinja' " Jinja2 syntax
+Plug 'lepture/vim-jinja' " Jinja2 syntax
 Plug 'JulesWang/css.vim' " Modern css syntax
 Plug 'vim-python/python-syntax' " Python syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
