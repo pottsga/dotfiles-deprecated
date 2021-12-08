@@ -8,7 +8,7 @@ export PATH="$PATH:$HOME/drivers:$HOME/bin:$HOME/lib" # User configuration
 export PATH="$PATH:$HOME/.emacs.d/bin" # Emacs executables
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 # export EDITOR='nvim'
-export EDITOR='emacs'
+export EDITOR='emacsclient'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -35,6 +35,7 @@ alias vim="nvim"
 alias mv="mv -v" # tell me what you mean
 alias cp="cp -v"
 alias rm="rm -v"
+alias emacs="emacs -nw"
 
 export PROMPT="%F{red}%n%f %~
 > "

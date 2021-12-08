@@ -31,7 +31,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-
 " CONFIGURATION
 source ~/.vim/configuration/emmet.vim
 source ~/.vim/configuration/nerdtree.vim
