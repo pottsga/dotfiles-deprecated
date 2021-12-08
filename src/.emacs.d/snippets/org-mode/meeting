@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: meeting
+# key: <meeting
+# --
+* ${1:HH:MM am/pm}: ${2:Meeting Title}
+  :meeting:
+  Attendees: $3
+
+** Action Items
+
+** Notes
+   $0

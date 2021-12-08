@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: Project Note
+# key: <project
+# uuid: project_note
+# --
+
+#+TITLE: $1
+
+:PROPERTIES:
+GIT: $2
+:END:
+
+* Description
+
+ $0
+
+* Tickets

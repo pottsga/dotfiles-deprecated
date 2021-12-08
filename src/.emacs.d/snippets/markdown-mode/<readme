@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name readme
+# key: <readme
+# --
+# $1
+
+Stakeholders: $2
+
+## Description
+
+$3$0
+
+\## Tickets / Changelog
+
+- $4

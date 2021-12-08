@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: daily_entry
+# key: <daily
+# --
+* `(format-time-string "%I:%M %p")`: $0
