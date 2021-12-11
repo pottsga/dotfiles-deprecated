@@ -5,10 +5,9 @@ fi
 # Environment variables
 export PATH="$PATH:$HOME/drivers:$HOME/bin:$HOME/lib" # User configuration
 # export PATH="$PATH:$HOME/lib/instantclient_19_8/" # Instantclient
-export PATH="$PATH:$HOME/.emacs.d/bin" # Emacs executables
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 # export EDITOR='nvim'
-export EDITOR='emacsclient'
+export EDITOR='vim'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

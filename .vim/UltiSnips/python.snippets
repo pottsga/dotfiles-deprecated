@@ -1,0 +1,52 @@
+snippet class "A Python3 class" b
+class $1
+    """Docstring for $1"""
+    def __init__(self, $2):
+	self.$2 = $2
+
+$0
+endsnippet
+
+snippet docstring "A Python 3 docstring" b
+"""
+$1
+
+Args:
+    $2
+
+Returns:
+    $3
+"""
+
+$0
+endsnippet
+
+snippet def "A Python3 function" b
+def $1($2):
+    """
+    $3
+
+    Args:
+	$4
+
+    Returns:
+	$5
+    """
+
+$0
+endsnippet
+
+snippet @view_config "Pyramid View Config snippet" b
+@view_config(route_name="${1:route_name}", renderer="${2:renderer_path}")
+def ${2:function_name}:
+    """
+    $3
+
+    Args:
+	$4
+
+    Returns:
+	$5
+    """
+    $0
+endsnippet

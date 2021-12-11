@@ -127,6 +127,11 @@
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-fu)
+  ;; Unbind space, return and tab from evil mode to be used elsewhere
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map (kbd "RET") nil)
+    (define-key evil-motion-state-map (kbd "TAB") nil))
   :config
   (evil-mode 1))
 
@@ -166,6 +171,9 @@
   ;; What states should the todo cycle have?
   (setq org-todo-keywords
 	'((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED")))
+
+  ;; startup with showing inline images
+  (setq org-startup-with-inline-images t)
   ;; Automatically put the time when todo is marked done
   (setq org-log-done 'time))
 
