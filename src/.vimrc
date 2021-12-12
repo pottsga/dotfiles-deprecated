@@ -2,9 +2,7 @@ set nocompatible " Don't try to be vi
 filetype plugin indent on
 syntax enable
 
-set encoding=utf-8
-
-let mapleader=","
+let mapleader="," " Set up the leader key
 
 source ~/.vim/plugins.vim
 source ~/.vim/autocmds.vim
