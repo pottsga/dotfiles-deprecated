@@ -13,7 +13,7 @@ export EDITOR='nvim'
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -21,9 +21,11 @@ export EDITOR='nvim'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  git
+  macos
 )
 
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias ssh="ssh -Y" # enable X-window forwarding by default
@@ -36,10 +38,8 @@ alias cp="cp -v"
 alias rm="rm -v"
 alias emacs="emacs -nw"
 
-export PROMPT="%F{red}%n%f %~
-> "
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export PROMPT="%F{red}%n%f %~
+# > "
 
 # Fix a python virtual environment issue per https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then

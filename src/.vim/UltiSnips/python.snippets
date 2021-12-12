@@ -1,0 +1,136 @@
+snippet class "A Python3 class" b
+class $1
+    """Docstring for $1"""
+    def __init__(self, $2):
+        self.$2 = $2
+        $0
+endsnippet
+
+snippet docstring "A Python 3 docstring" b
+""" $1
+
+Args:
+    ${2:param1 (int): The first parameter.}
+
+Returns:
+    ${3:Function returns?}
+"""
+
+$0
+endsnippet
+
+snippet def "A Python3 function" b
+def ${1:function_name}(${2:arguments}):
+    """ $3
+
+    Args:
+        ${4:param1 (int): The first parameter.}
+
+    Returns:
+        ${5:Function returns?}
+    """
+
+$0
+endsnippet
+
+snippet @view_config "Pyramid View Config snippet" b
+@view_config(route_name="${1:route_name}", renderer="${2:renderer_path}")
+def ${1:${VISUAL/\./_/g}}(${3:arguments}):
+    """ $4
+
+    Args:
+      ${5:param1 (int): The first parameter.}
+
+    Returns:
+        ${6:Function returns?}
+    """
+    $0
+endsnippet
+
+snippet from "From import statement" b
+from ${1:package} import ${0:module}
+endsnippet
+
+snippet with "With statement" b
+with ${1:expr} as ${2:var}:
+    ${0:${VISUAL}}
+endsnippet
+
+snippet awith "Async with statement" b
+async with ${1:expr} as ${2:var}:
+    ${0:${VISUAL}}
+endsnippet
+
+snippet try "Try/Except" b
+try:
+    ${1:${VISUAL}}
+except ${2:Exception} as ${3:e}:
+    ${0:raise $3}
+endsnippet
+
+snippet trye "Try/Except/Else" b
+try:
+    ${1:${VISUAL}}
+except ${2:Exception} as ${3:e}:
+    ${4:raise $3}
+else:
+    ${0}
+endsnippet
+
+snippet tryf "Try/Except/Finally" b
+try:
+    ${1:${VISUAL}}
+except ${2:Exception} as ${3:e}:
+    ${4:raise $3}
+finally:
+    ${0}
+endsnippet
+
+snippet tryef "Try/Except/Else/Finally" b
+try:
+    ${1:${VISUAL}}
+except ${2:Exception} as ${3:e}:
+    ${4:raise $3}
+else:
+    ${5}
+finally:
+    ${0}
+endsnippet
+
+snippet ilog "Import and set up logging" b
+import logging
+LOGGER = logging.getLogger(${1:__name__})
+$0
+endsnippet
+
+snippet le "Logger error" b
+LOGGER.error(${0:msg})
+endsnippet
+
+snippet lg "Logger debug" b
+LOGGER.debug(${0:msg})
+endsnippet
+
+snippet lw "Logger warning" b
+LOGGER.warning(${0:msg})
+endsnippet
+
+snippet lc "Logger critical" b
+LOGGER.critical(${0:msg})
+endsnippet
+
+snippet li "Logger info" b
+LOGGER.info(${0:msg})
+endsnippet
+
+snippet lcp "List comprehension" b
+[${1} for ${2} in ${3:${VISUAL}}]${0}
+endsnippet
+
+snippet dcp "Dict comprehension" b
+{${1}: ${2} for ${3} in ${4:${VISUAL}}}${0}
+endsnippet
+
+snippet scp "Set comprehension" b
+{${1} for ${2} in ${3:${VISUAL}}}${0}
+endsnippet

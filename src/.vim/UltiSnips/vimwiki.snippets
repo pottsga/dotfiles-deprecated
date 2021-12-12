@@ -1,0 +1,26 @@
+snippet c "A code block in vimwiki syntax" b
+{{{${1:language}
+$0
+}}}
+endsnippet
+
+snippet file "A link to a file on the filesystem"
+[[file:${1:file_path}|`!p snip.rv = t[1].split('/')[-1]`]]$0
+endsnippet
+
+
+snippet wikilink "A link to a wiki article on the filesystem"
+[[${1:wiki_path}|`!p snip.rv = t[1].split('/')[-1]`]]$0
+endsnippet
+
+snippet link "A link to a URL"
+[[${1:link}]]
+endsnippet
+
+snippet reference_note "A skeleton template for what a reference note should look like" b
+= $1 =
+
+[[../index|Back to Index]]
+
+$0
+endsnippet
