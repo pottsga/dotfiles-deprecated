@@ -1,7 +1,6 @@
 " I like to use vim-plug. Use this command to install it.
 "
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/plugged')
 
@@ -74,6 +73,8 @@ autocmd FileType jinja setlocal commentstring=\{\#\ %s\ \#\}
 " Vimwiki
 let g:vimwiki_table_mappings = 0 " allows for using <tab> in insert mode for ultisnips
 let wiki = {}
-let wiki.path = '~/Desktop/Notes'
+let wiki.path = '~/notes'
 let wiki.nested_syntaxes = {'python': 'python', 'javascript': 'javascript', 'html': 'html', 'css': 'css', 'sql': 'sql', 'bash': 'bash'}
 let g:vimwiki_list = [wiki]
+
+let g:python3_host_prog = '/usr/bin/python3'

@@ -3,11 +3,16 @@ if ! [[ -d ~/.oh-my-zsh ]] then
 fi
 
 # Environment variables
-export PATH="$PATH:$HOME/drivers:$HOME/bin:$HOME/lib" # User configuration
+# export PATH="$PATH:$HOME/drivers:$HOME/bin:$HOME/lib" # User configuration
+# Oracle drivers
+# export PATH="$PATH:$HOME/lib/instantclient_19_8"
 # export PATH="$PATH:$HOME/lib/instantclient_19_8/" # Instantclient
 export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 # export EDITOR='nvim'
 export EDITOR='nvim'
+
+export PATH="$PATH:$HOME/bin" # local executable scripts
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -37,6 +42,15 @@ alias mv="mv -v" # tell me what you mean
 alias cp="cp -v"
 alias rm="rm -v"
 alias emacs="emacs -nw"
+
+# Most of the time, apps are still written for Intel in mind. Use that by default. mbrew is there to install
+# Apple silicon-based apps though
+# To install brew for x86_64:
+#   arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# To install brew for arm64:
+#   arch -arm64e /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+alias brew='arch -x86_64 /usr/local/bin/brew'
+alias mbrew='arch -arm64e /opt/homebrew/bin/brew'
 
 # export PROMPT="%F{red}%n%f %~
 # > "

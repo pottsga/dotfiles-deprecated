@@ -6,6 +6,5 @@ let mapleader="," " Set up the leader key
 
 source ~/.vim/plugins.vim
 source ~/.vim/autocmds.vim
-source ~/.vim/language_settings.vim
 source ~/.vim/remaps.vim
 source ~/.vim/ui.vim
