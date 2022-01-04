@@ -11,6 +11,7 @@ export ZSH=$HOME/.oh-my-zsh # Path to your oh-my-zsh installation.
 # export EDITOR='nvim'
 export EDITOR='nvim'
 
+export PATH=~/.local/bin/:$PATH # for npm's local. To config npm to use this, run `npm config set prefix ~/.local`
 export PATH="$PATH:$HOME/bin" # local executable scripts
 
 
