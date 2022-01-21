@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name:extends
-# key:<extends
-# --
-{% extends '$1' %}
-$0
-

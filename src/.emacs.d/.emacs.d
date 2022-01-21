@@ -1,1 +1,0 @@
-/Users/potts_g/.emacs.d
