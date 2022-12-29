@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+echo "Installing dotfiles into $HOME"
+
+# Install ~/.zshrc
+echo "Installing $HOME/.zshrc"
+ln -sf $HOME/Dotfiles/.zshrc $HOME/.zshrc
+
+# Install ~/.oh-my-zsh/custom/themes/pottsga.zsh-theme
+echo "Installing $HOME/.oh-my-zsh/custom/themes/pottsga.zsh-theme"
+# Check to see if the .oh-my-zsh directory exists. If not, tell the user to install it.
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    ln -sf $HOME/Dotfiles/.oh-my-zsh/custom/themes/pottsga.zsh-theme $HOME/.oh-my-zsh/custom/themes/pottsga.zsh-theme
+else
+    echo "You need to install oh-my-zsh first before customizations will be applied.."
+fi
+
+# Install ~/.config/nvim
+echo "Installing $HOME/.config/nvim"
+ln -sf $HOME/Dotfiles/.config/nvim $HOME/.config/nvim
+
+

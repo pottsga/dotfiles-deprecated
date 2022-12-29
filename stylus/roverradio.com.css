@@ -1,0 +1,44 @@
+/**
+ * Snippets for roverradio.com to remove annoying sections and overall bad design. He
+ * will never fix it, so I will.
+ *
+ * Url: https://roverradio.com/
+ * Author: Greg Potts <pottsga@gmail.com>
+ * Date: 2022-12-29
+ */
+
+
+/*
+ Removes Rover's annoying advertisements from the top
+ */
+.vlog-asd,
+.vlog-top-bar {
+    display: none;
+}
+
+/*
+ Makes the video player play at 100% width and height
+ */
+.vlog-section:nth-child(2) .container ,
+#rmpPlayer1 {
+    height: calc(100vh - 50px) !important; /* 100 percent of the view height minus the navbar's height */
+    width: 100vw !important;
+}
+
+/*
+ On the RMG Plus screens, Rover put a max-width property on the video's container.
+ This breaks the video's ability to go full-screen. Remove that...
+ */
+div.fl-row:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+    max-width: unset;
+}
+
+/*
+ It really annoys me that the My account header on the login page is too far to the left. Fix it for the love of
+ God
+*/
+.entry-title.vlog-page-title {
+    max-width: 1100px;
+    margin: auto;
+    padding: 10px 20px;
+}
